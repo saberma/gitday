@@ -1,0 +1,3 @@
+== Installation
+
+sudo apt-get install libcurl-dev
