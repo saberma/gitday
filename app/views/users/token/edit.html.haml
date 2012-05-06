@@ -1,0 +1,6 @@
+=form_for current_user, :url => user_token_path do |f|
+  %dl
+    %dt=f.label :token
+    %dd=f.text_field :token
+  %p
+    %input.btn{:name => "commit", :type => "submit", :value => "保存"}

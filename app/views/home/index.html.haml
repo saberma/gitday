@@ -1,1 +1,4 @@
-=link_to 'login', user_omniauth_authorize_path(:github)
+-if user_signed_in?
+  =render 'dashboard'
+-else
+  =link_to 'login', user_omniauth_authorize_path(:github)

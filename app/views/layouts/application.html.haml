@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title GithubFriend
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    -if user_signed_in?
+      =link_to 'Update Token', user_token_path
+    = yield

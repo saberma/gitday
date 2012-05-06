@@ -1,3 +1,11 @@
-== Installation
+## Feature
+
+* Show Watch, Follow Event, but filter Issues, PullRequest relative Event, so the dashboard should be clear.
+
+* Show users which were followed by your friend last day.
+
+* Show repositories which were watched by your friend last day.
+
+## Installation
 
 sudo apt-get install libcurl-dev
