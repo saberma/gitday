@@ -24,7 +24,8 @@ gem 'jquery-rails'
 gem 'feedzirra'
 gem 'redis'
 gem 'haml'
-gem 'oauth2'
+gem 'devise'
+gem 'omniauth-github'
 gem 'settingslogic'
 
 group :development, :test do
