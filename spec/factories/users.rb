@@ -2,7 +2,5 @@
 
 FactoryGirl.define do
   factory :user do
-      username "MyString"
-      token "MyString"
     end
 end
