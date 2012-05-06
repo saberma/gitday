@@ -22,9 +22,19 @@ end
 
 gem 'jquery-rails'
 gem 'feedzirra'
+gem 'redis'
+gem 'haml'
+gem 'oauth2'
+gem 'settingslogic'
 
 group :development, :test do
-  gem "awesome_print", require: 'ap' # 调试
+  gem "awesome_print", require: 'ap'
+  gem "factory_girl"
+  gem "factory_girl_rails"
+end
+
+group :development do
+  gem "haml-rails"
 end
 
 # To use ActiveModel has_secure_password
@@ -42,4 +52,6 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
+  gem "rspec-rails"
+  gem 'database_cleaner'
 end

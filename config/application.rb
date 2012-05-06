@@ -21,6 +21,13 @@ module GithubFriend
       #{config.root}/extras
     )
 
+    # Configure generators values. Many other options are available, be sure to check the documentation.
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework :rspec, :fixture => true, :views => false
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
