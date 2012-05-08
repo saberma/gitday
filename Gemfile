@@ -27,6 +27,7 @@ gem 'haml'
 gem 'devise'
 gem 'omniauth-github'
 gem 'settingslogic'
+gem 'less-rails-bootstrap'
 
 group :development, :test do
   gem "awesome_print", require: 'ap'

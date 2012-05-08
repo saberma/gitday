@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506104634) do
+ActiveRecord::Schema.define(:version => 20120507043010) do
+
+  create_table "entries", :force => true do |t|
+    t.string   "short_id",     :limit => 32
+    t.integer  "user_id"
+    t.string   "link",         :limit => 64
+    t.string   "title",        :limit => 128,  :null => false
+    t.string   "author_name",  :limit => 16
+    t.string   "author_email", :limit => 32
+    t.string   "author_uri",   :limit => 64
+    t.string   "content",      :limit => 1024
+    t.datetime "created_at"
+  end
+
+  add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
+  add_index "entries", ["user_id"], :name => "index_entries_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",               :limit => 128, :default => "", :null => false
@@ -23,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120506104634) do
     t.string   "last_sign_in_ip",     :limit => 32
     t.string   "login",               :limit => 128,                 :null => false
     t.string   "token",               :limit => 32
+    t.string   "etag",                :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
   end

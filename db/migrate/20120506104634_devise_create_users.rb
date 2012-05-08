@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :login, :null => false, :limit => 128
       t.string :token, :limit => 32
+      t.string :etag, :limit => 32
       t.timestamps
     end
 
