@@ -7,6 +7,7 @@ class HomeController < ApplicationController
         redirect_to user_token_path
       else
         @entries = current_user.entries
+        render :action => "dashboard" and return
       end
     end
   end

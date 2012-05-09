@@ -9,6 +9,8 @@ class CreateEntries < ActiveRecord::Migration
       t.string :author_email, :limit => 32
       t.string :author_uri  , :limit => 64
       t.string :content     , :limit => 1024
+      t.string :thumbnail   , :limit => 255
+      t.string :event   , :limit => 32
 
       t.datetime :created_at
     end

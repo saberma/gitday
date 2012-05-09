@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120507043010) do
     t.string   "author_email", :limit => 32
     t.string   "author_uri",   :limit => 64
     t.string   "content",      :limit => 1024
+    t.string   "thumbnail"
     t.datetime "created_at"
   end
 

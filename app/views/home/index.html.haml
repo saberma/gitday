@@ -1,4 +1,5 @@
--if user_signed_in?
-  =render 'dashboard'
--else
-  =link_to 'login', user_omniauth_authorize_path(:github)
+.hero-unit
+  %h1 Github Friend!
+  %p Making more friends from github.
+  %p
+    %a.btn.btn-primary.btn-large(href='/users/auth/github') Sign in  using your Github account

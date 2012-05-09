@@ -28,7 +28,8 @@ while true
                   :author_name => author.name,
                   :author_email => author.email,
                   :author_uri => author.uri,
-                  :content => entry.content
+                  :content => entry.content,
+                  :thumbnail => entry.thumbnail
                 })
               end
             end

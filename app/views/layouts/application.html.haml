@@ -1,11 +1,25 @@
 !!!
 %html
   %head
-    %title GithubFriend
+    %title Github Friend
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    -if user_signed_in?
-      =link_to 'Update Token', user_token_path
-    = yield
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand(href="#") Github Friend
+          %ul.nav.pull-right
+            -if user_signed_in?
+              %li.dropdown
+                =link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown } do
+                  =current_user.login
+                  %b.caret
+                %ul.dropdown-menu
+                  %li=link_to 'Update Token', user_token_path
+                  %li=link_to 'Sign Out', sign_out_path
+            -else
+              %li=link_to 'Sign in  using your Github account', user_omniauth_authorize_path(:github)
+    #main.container
+      = yield
