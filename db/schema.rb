@@ -11,39 +11,98 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507043010) do
+ActiveRecord::Schema.define(:version => 20120510031315) do
+
+  create_table "days", :force => true do |t|
+    t.integer "member_id",    :null => false
+    t.integer "number",       :null => false
+    t.date    "published_on"
+  end
 
   create_table "entries", :force => true do |t|
     t.string   "short_id",     :limit => 32
-    t.integer  "user_id"
+    t.integer  "day_id"
     t.string   "link",         :limit => 64
-    t.string   "title",        :limit => 128,  :null => false
-    t.string   "author_name",  :limit => 16
-    t.string   "author_email", :limit => 32
-    t.string   "author_uri",   :limit => 64
-    t.string   "content",      :limit => 1024
-    t.string   "thumbnail"
+    t.string   "author",       :limit => 16
+    t.datetime "published_at"
+  end
+
+  add_index "entries", ["day_id"], :name => "index_entries_on_day_id"
+  add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
+
+  create_table "following_authors", :force => true do |t|
+    t.integer  "follow_id"
+    t.integer  "author_id"
     t.datetime "created_at"
   end
 
-  add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
-  add_index "entries", ["user_id"], :name => "index_entries_on_user_id"
+  add_index "following_authors", ["follow_id"], :name => "index_following_authors_on_follow_id"
 
-  create_table "users", :force => true do |t|
-    t.string   "email",               :limit => 128, :default => "", :null => false
+  create_table "followings", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
+  add_index "followings", ["day_id"], :name => "index_followings_on_day_id"
+
+  create_table "members", :force => true do |t|
+    t.string   "email",               :limit => 128,                :null => false
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                      :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  :limit => 32
     t.string   "last_sign_in_ip",     :limit => 32
-    t.string   "login",               :limit => 128,                 :null => false
+    t.string   "login",               :limit => 128,                :null => false
     t.string   "token",               :limit => 32
     t.string   "etag",                :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+
+  create_table "repositories", :force => true do |t|
+    t.integer  "user_id",                    :null => false
+    t.string   "fullname",    :limit => 128, :null => false
+    t.string   "description", :limit => 512
+    t.string   "homepage"
+    t.string   "language",    :limit => 16
+    t.integer  "watchers"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login",        :limit => 32
+    t.string   "name",         :limit => 32
+    t.string   "company",      :limit => 64
+    t.string   "blog",         :limit => 128
+    t.string   "location",     :limit => 64
+    t.integer  "public_repos"
+    t.integer  "followers"
+    t.integer  "following"
+    t.string   "avatar_url"
+    t.string   "gravatar_id",  :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "watching_authors", :force => true do |t|
+    t.integer  "watching_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+  end
+
+  add_index "watching_authors", ["watching_id"], :name => "index_watching_authors_on_watching_id"
+
+  create_table "watchings", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "repository_id"
+    t.datetime "created_at"
+  end
+
+  add_index "watchings", ["day_id"], :name => "index_watchings_on_day_id"
 
 end

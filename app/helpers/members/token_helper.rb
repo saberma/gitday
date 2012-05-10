@@ -1,2 +1,2 @@
-module Users::TokenHelper
+module Members::TokenHelper
 end

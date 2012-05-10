@@ -28,6 +28,8 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'settingslogic'
 gem 'less-rails-bootstrap'
+gem 'octokit'
+gem 'seedbank'
 
 group :development, :test do
   gem "awesome_print", require: 'ap'

@@ -6,7 +6,13 @@ class HomeController < ApplicationController
       if current_member.token.blank?
         redirect_to member_token_path
       else
-        @entries = current_member.entries
+        day = current_member.days.first
+        @entries = []
+        @watchings = []
+        if day
+          @entries = day.entries
+          @watchings = day.watchings
+        end
         render :action => "dashboard" and return
       end
     end
