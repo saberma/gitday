@@ -14,6 +14,12 @@ Github Friend, making more friends, watching more repositories.
 
 * Show your repositories latest watchers.
 
+## Future
+
+* Show watching and following author
+
+* Member can watch or follow
+
 ## Installation
 
 sudo apt-get install libcurl-dev

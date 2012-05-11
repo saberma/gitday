@@ -20,6 +20,6 @@
                   %li=link_to 'Update Token', member_token_path
                   %li=link_to 'Sign Out', sign_out_path
             -else
-              %li=link_to 'Sign in  using your Github account', member_omniauth_authorize_path(:github)
+              %li=link_to 'Sign in with Github', member_omniauth_authorize_path(:github)
     #main.container
       = yield

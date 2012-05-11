@@ -6,42 +6,47 @@
       -#
         .follower
           .page-header
-            %h6 Your new follower:
+            %h6 YOUR NEW FOLLOWER:
 
         .watcher
           .page-header
             %h6
-              Your
+              YOUR
               %small ShopQi
-              watcher:
+              WATCHER:
 
       .followed
         .page-header
-          %h6 Your friends following:
+          %h6 YOUR FRIENDS FOLLOWING:
         %ul.unstyled
           -@entries.each do |entry|
             -if entry.follow_event?
-              -#%li=raw entry.content
-              %li.content.row
-                .span-3
-                  =image_tag entry.thumbnail, style: 'width: 48px; height: 48px;'
-                .title.span-5
-                  =link_to entry.link, entry.uri
-                  has 1 public repo and 27 followers
+              %li
+                .content.row
+                  .span
+                    =image_tag entry.thumbnail, style: 'width: 48px; height: 48px;'
+                  .span
+                    =link_to entry.link, entry.uri
+                    has 1 public repo and 27 followers
 
       .watched
         .page-header
-          %h6 Your friends watching:
+          %h6 YOUR FRIENDS WATCHING:
         %ul.unstyled
           -@watchings.each do |watching|
-            %li.content.row
-              .span-3
-                =image_tag watching.repository.user.avatar_url, style: 'width: 48px; height: 48px;'
-              .title.span-5
-                =link_to watching.repository.name, watching.repository.uri
-                belong to
-                =link_to watching.repository.user.login, watching.repository.user.uri
-              .description=watching.repository.description
+            -repo = watching.repository
+            %li
+              .row.content
+                .span
+                  =link_to repo.uri do
+                    =image_tag repo.user.avatar_url, style: 'width: 48px; height: 48px;'
+                .span
+                  %h5
+                    =link_to repo.user.login, repo.user.uri
+                    \/
+                    =link_to repo.name, repo.uri
+                    %span.badge(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+                  %p.description=repo.description
 
     .sidebar.span8
       .well
