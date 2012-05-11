@@ -14,20 +14,25 @@ unless Member.find_by_email(email)
 
     day.entries.create!([
       {
-        :author => "huacnlee",
-        :link => "huacnlee/easy_captcha",
+        :author => "saberma",
+        :link => "rails/rails",
         :published_at => "2012-05-10T12:40:25Z",
-        :short_id => "ForkEvent/1550718605"
+        :short_id => "ForkEvent/1550818101"
       }, {
-        :author => "caiwangqin",
-        :link => "stefanhafeneger/PushMeBaby",
+        :author => "alexwilliamsca",
+        :link => "aphyr/riemann",
         :published_at => "2012-05-10T10:28:08Z",
-        :short_id => "WatchEvent/1550684062"
+        :short_id => "WatchEvent/1550818201"
       }, {
-        :author => "sorrycc",
-        :link => "sorrycc/em",
+        :author => "amiridis",
+        :link => "amiridis/amiridis.github.com",
         :published_at => "2012-05-10T09:01:34Z",
-        :short_id => "CreateEvent/1550655741"
+        :short_id => "CreateEvent/1550818301"
+      }, {
+        :author => "saberma",
+        :link => "dhh",
+        :published_at => "2012-05-10T08:11:52Z",
+        :short_id => "FollowEvent/1550818401"
       }
     ])
   end

@@ -9,16 +9,23 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand(href="#") Github Friend
+          %a.brand(href="/") Github Friend
           %ul.nav.pull-right
             -if member_signed_in?
               %li.dropdown
                 =link_to '#', class: 'dropdown-toggle', data: { toggle: :dropdown } do
-                  =current_member.login
+                  ==@#{current_member.login}
                   %b.caret
                 %ul.dropdown-menu
-                  %li=link_to 'Update Token', member_token_path
-                  %li=link_to 'Sign Out', sign_out_path
+                  %li
+                    =link_to member_token_path do
+                      %i.icon-lock
+                      Token
+                  %li.divider
+                  %li
+                    =link_to sign_out_path do
+                      %i.icon-off
+                      Sign Out
             -else
               %li=link_to 'Sign in with Github', member_omniauth_authorize_path(:github)
     #main.container

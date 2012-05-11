@@ -11,6 +11,7 @@ class CreateEntries < ActiveRecord::Migration
       #t.string :content     , :limit => 1024
       #t.string :thumbnail   , :limit => 255
       #t.string :event   , :limit => 32
+      t.boolean :generated   , :default => false # generated for day report?
 
       t.datetime :published_at
     end

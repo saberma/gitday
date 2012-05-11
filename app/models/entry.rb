@@ -1,6 +1,10 @@
 class Entry < ActiveRecord::Base
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
 
+  def generated!
+    self.update_attributes! :generated => true
+  end
+
   def uri
     "https://github.com/#{self.link}"
   end

@@ -2,13 +2,13 @@ class Repository < ActiveRecord::Base
   belongs_to :user
 
   # @fullname saberma/shopqi
-  def self.get(fullname)
+  def self.get(fullname, json = nil, user = nil)
     repo = self.find_by_fullname(fullname)
     unless repo
-      json = Octokit.repo(fullname)
+      json ||= Octokit.repo(fullname)
       repo = self.create({
         :fullname => fullname,
-        :user => User.get(json['owner']['login']),
+        :user => user || User.get(json['owner']['login']),
         :description => json['description'],
         :homepage => json['homepage'],
         :language => json['language'],

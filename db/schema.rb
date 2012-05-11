@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120510031315) do
     t.integer  "day_id"
     t.string   "link",         :limit => 64
     t.string   "author",       :limit => 16
+    t.boolean  "generated",                  :default => false
     t.datetime "published_at"
   end
 
@@ -31,12 +32,12 @@ ActiveRecord::Schema.define(:version => 20120510031315) do
   add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
 
   create_table "following_authors", :force => true do |t|
-    t.integer  "follow_id"
+    t.integer  "following_id"
     t.integer  "author_id"
     t.datetime "created_at"
   end
 
-  add_index "following_authors", ["follow_id"], :name => "index_following_authors_on_follow_id"
+  add_index "following_authors", ["following_id"], :name => "index_following_authors_on_following_id"
 
   create_table "followings", :force => true do |t|
     t.integer  "day_id"

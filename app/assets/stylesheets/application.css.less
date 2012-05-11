@@ -63,8 +63,28 @@
 @gridColumnWidth: 30px;
 @gridGutterWidth: 10px;
 
+@navbarBackground: #F8F8F8;
+@navbarBackgroundHighlight: #F8F8F8;
+//@navbarBrandColor: #000;
+@navbarLinkColor: #555;
+@navbarLinkColorHover: #999;
+@dropdownBackground: #fff;
+
+.navbar-inner {
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-bottom: 1px solid #E0E0E0; }
+
+.navbar .nav li.dropdown .dropdown-toggle .caret {
+  border-top-color: black;
+  border-bottom-color: black; }
+
 #main {
-  margin-top: 40px; }
+  margin-top: 40px;
+  margin-bottom: 40px;
+  .divider {
+    color: #999; } }
 
 .day {
   h1.title {
@@ -76,8 +96,9 @@
     padding: 10px 0;
     border-bottom: #E2E2E2 dashed 1px;
     overflow: auto;
-    margin-right: 10px;
-    .title { } }
+    //margin-right: 10px;
+    .well {
+      margin-bottom: 0; } }
 
   .sidebar {
     margin-top: 18px; } }

@@ -23,17 +23,16 @@ class Day < ActiveRecord::Base
 
   def generate
     self.entries.each do |entry|
+      puts "generate:#{entry.short_id}"
       Day.transaction do
         if entry.all_watch_event?
-          p '========='
-          p entry.watching_repository
           watching = self.watchings.on entry.watching_repository
-          ap watching
           watching.authors.create author: User.get(entry.author)
         elsif entry.all_follow_event?
           following = self.followings.with entry.following_user
           following.authors.create author: User.get(entry.author)
         end
+        entry.generated!
       end
     end
   end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :repositories, order: 'watchers desc'
 
   def self.get(login)
     user = self.find_by_login(login)
@@ -16,11 +17,21 @@ class User < ActiveRecord::Base
         :avatar_url => json['avatar_url'],
         :gravatar_id => json['gravatar_id']
       })
+      repos = Octokit.repos(login)
+      repos.reject(&:fork).each do |json|
+        Repository.get "#{login}/#{json['name']}", json, user
+      end
     end
     user
   end
 
   def uri
     "https://github.com/#{login}"
+  end
+
+  def description
+    info = [self.company]
+    info.unshift "based in #{self.location}" unless self.location.blank?
+    info.compact.join(', ')
   end
 end

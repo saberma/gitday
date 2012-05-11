@@ -26,14 +26,30 @@
               -user = following.user
               %li
                 .row.content
-                  .span
+                  .span2
                     =link_to user.uri do
-                      =image_tag user.avatar_url, style: 'width: 48px; height: 48px;'
-                  .span
+                      =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
+                  .span13
                     %h5
                       =link_to user.login, user.uri
-                      %span.badge(rel="tooltip" title="#{user.followers} followers")=user.followers
-                    %p.description
+                      -unless user.blog.blank?
+                        %span.divider [
+                        =link_to user.blog, user.blog
+                        %span.divider ]
+                      %span.label(rel="tooltip" title="#{user.public_repos} public repos, #{user.repositories.size} non-fork repos")=user.public_repos
+                      %span.label(rel="tooltip" title="#{user.followers} followers")=user.followers
+                    %p.description=user.description
+                    .well
+                      -user.repositories.each do |repo|
+                        %p
+                          =link_to repo.name, repo.uri
+                          -unless repo.language.blank?
+                            %span.label=repo.language
+                          %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+                          -unless repo.description.blank?
+                            %p=repo.description
+                  .span1
+                    %span.badge.badge-info(rel="popover" data-content="#{following.authors_name}" data-original-title="FOLLOWING BY")=following.authors.size
 
       -unless @watchings.empty?
         .watched
@@ -44,16 +60,20 @@
               -repo = watching.repository
               %li
                 .row.content
-                  .span
+                  .span2
                     =link_to repo.uri do
-                      =image_tag repo.user.avatar_url, style: 'width: 48px; height: 48px;'
-                  .span
+                      =image_tag repo.user.avatar_url, style: 'width: 70px; height: 70px;'
+                  .span13
                     %h5
                       =link_to repo.user.login, repo.user.uri
-                      \/
+                      %span.divider /
                       =link_to repo.name, repo.uri
-                      %span.badge(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+                      -unless repo.language.blank?
+                        %span.label=repo.language
+                      %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
                     %p.description=repo.description
+                  .span1
+                    %span.badge.badge-info(rel="popover" data-content="#{watching.authors_name}" data-original-title="WATCHING BY")=watching.authors.size
 
     .sidebar.span8
       .well

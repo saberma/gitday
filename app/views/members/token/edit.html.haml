@@ -1,6 +1,8 @@
-=form_for current_member, :url => member_token_path do |f|
-  %dl
-    %dt=f.label :token
-    %dd=f.text_field :token
-  %p
-    %input.btn{:name => "commit", :type => "submit", :value => "保存"}
+=form_for current_member, :url => member_token_path, :html => {:class => :well} do |f|
+  =f.label :token
+  =f.text_field :token, :class => :span6
+  %p.help-block
+    find your token in
+    =link_to 'github dashboard', 'https://github.com'
+    News Feed
+  %button.btn{:type => "submit"} 保存
