@@ -15,6 +15,7 @@ class Watching < ActiveRecord::Base
       unless watching
         watching = day.watchings.create repository: repo
       end
+      watching
     end
 
   end

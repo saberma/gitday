@@ -24,10 +24,13 @@ class Day < ActiveRecord::Base
   def generate
     self.entries.each do |entry|
       Day.transaction do
-        if entry.watch_event?
+        if entry.all_watch_event?
+          p '========='
+          p entry.watching_repository
           watching = self.watchings.on entry.watching_repository
+          ap watching
           watching.authors.create author: User.get(entry.author)
-        elsif entry.follow_event?
+        elsif entry.all_follow_event?
           following = self.followings.with entry.following_user
           following.authors.create author: User.get(entry.author)
         end

@@ -1,4 +1,5 @@
 class Entry < ActiveRecord::Base
+  WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
 
   def uri
     "https://github.com/#{self.link}"
@@ -9,21 +10,29 @@ class Entry < ActiveRecord::Base
   end
 
   def following_user
-    link if follow_event?
+    link if all_follow_event?
   end
 
   def watching_repository
-    link if watch_event?
+    link if all_watch_event?
   end
 
   begin 'events'
 
     def follow_event?
-      event == 'FollowEvent'
+      self.all_watch_event?
     end
 
     def watch_event?
       event == 'WatchEvent'
+    end
+
+    def all_follow_event?
+      event == 'FollowEvent'
+    end
+
+    def all_watch_event?
+      WATCH_EVENT.include? event
     end
 
   end

@@ -15,6 +15,7 @@ class Following < ActiveRecord::Base
       unless following
         following = day.followings.create user: user
       end
+      following
     end
 
   end
