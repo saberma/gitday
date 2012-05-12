@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       if current_member.token.blank?
         redirect_to member_token_path
       else
-        @day = current_member.days.first || current_member.days.new
+        @day = current_member.days.latest || current_member.days.new
         @entries = @day.entries
         @watchings = @day.watchings
         @followings = @day.followings

@@ -6,6 +6,10 @@ class Day < ActiveRecord::Base
   has_many :watchers  , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
   has_many :followers , dependent: :destroy, order: 'id desc'
 
+  def self.latest
+    where(["published_on < ?", Date.today]).first
+  end
+
   module Extension # http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html #Association extensions
 
     def member

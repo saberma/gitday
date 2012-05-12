@@ -1,66 +1,70 @@
 .row
   .span16
-    .day
-      %h1.title
-        ==Day #{@day.number}
-        %small=@day.published_on.to_s(:db)
+    -unless @day.new_record?
+      .day
+        %h1.title
+          ==Day #{@day.number}
+          %small=@day.published_on.to_s(:db)
 
-      -unless @followers.empty?
-        .follower
-          .page-header
-            %h6 YOUR NEW FOLLOWER:
+        -unless @followers.empty?
+          .follower
+            .page-header
+              %h6 YOUR NEW FOLLOWER:
+            %ul.unstyled
+              -@followers.each do |follower|
+                %li
+                  .row.content=render partial: 'user', object: follower.author
+
+        -@watchers.each do |watcher|
+          .watcher
+            .page-header
+              %h6
+                YOUR
+                %small=watcher.repository.name
+                WATCHER:
           %ul.unstyled
-            -@followers.each do |follower|
+            -watcher.authors.each do |author|
               %li
-                .row.content=render partial: 'user', object: follower.author
+                .row.content=render partial: 'user', object: author.author
 
-      -@watchers.each do |watcher|
-        .watcher
-          .page-header
-            %h6
-              YOUR
-              %small=watcher.repository.name
-              WATCHER:
-        %ul.unstyled
-          -watcher.authors.each do |author|
-            %li
-              .row.content=render partial: 'user', object: author.author
+        -unless @followings.empty?
+          .followed
+            .page-header
+              %h6 YOUR FRIENDS FOLLOWING:
+            %ul.unstyled
+              -@followings.each do |following|
+                %li
+                  .row.content
+                    =render partial: 'user', object: following.user
+                    .span1
+                      %span.badge.badge-info(rel="popover" data-content="#{following.authors_name}" data-original-title="FOLLOWING BY")=following.authors.size
 
-      -unless @followings.empty?
-        .followed
-          .page-header
-            %h6 YOUR FRIENDS FOLLOWING:
-          %ul.unstyled
-            -@followings.each do |following|
-              %li
-                .row.content
-                  =render partial: 'user', object: following.user
-                  .span1
-                    %span.badge.badge-info(rel="popover" data-content="#{following.authors_name}" data-original-title="FOLLOWING BY")=following.authors.size
-
-      -unless @watchings.empty?
-        .watched
-          .page-header
-            %h6 YOUR FRIENDS WATCHING:
-          %ul.unstyled
-            -@watchings.each do |watching|
-              -repo = watching.repository
-              %li
-                .row.content
-                  .span2
-                    =link_to repo.uri do
-                      =image_tag repo.user.avatar_url, style: 'width: 70px; height: 70px;'
-                  .span13
-                    %h5
-                      =link_to repo.user.login, repo.user.uri
-                      %span.divider /
-                      =link_to repo.name, repo.uri
-                      -unless repo.language.blank?
-                        %span.label=repo.language
-                      %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
-                    %p.description=repo.description
-                  .span1
-                    %span.badge.badge-info(rel="popover" data-content="#{watching.authors_name}" data-original-title="WATCHING BY")=watching.authors.size
+        -unless @watchings.empty?
+          .watched
+            .page-header
+              %h6 YOUR FRIENDS WATCHING:
+            %ul.unstyled
+              -@watchings.each do |watching|
+                -repo = watching.repository
+                %li
+                  .row.content
+                    .span2
+                      =link_to repo.uri do
+                        =image_tag repo.user.avatar_url, style: 'width: 70px; height: 70px;'
+                    .span13
+                      %h5
+                        =link_to repo.user.login, repo.user.uri
+                        %span.divider /
+                        =link_to repo.name, repo.uri
+                        -unless repo.language.blank?
+                          %span.label=repo.language
+                        %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+                      %p.description=repo.description
+                    .span1
+                      %span.badge.badge-info(rel="popover" data-content="#{watching.authors_name}" data-original-title="WATCHING BY")=watching.authors.size
+    -else
+      .alert.alert-info We will parse your NEWS FEED at 24:00, after that you can see a daily report like below.
+      =image_tag 'preview.png'
 
   .sidebar.span8
     .well
