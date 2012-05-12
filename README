@@ -1,7 +1,5 @@
 Github Friend, making more friends, watching more repositories.
 
-显示昨天好友follow的用户，好友watch的项目。follow你的用户，各个项目的follower
-
 ## Feature
 
 * Show Watch, Follow Event, but filter Issues, PullRequest relative Event, so the dashboard should be clear.
@@ -19,6 +17,10 @@ Github Friend, making more friends, watching more repositories.
 * Show watching and following author
 
 * Member can watch or follow
+
+* Recommend user and repo for you
+
+* Ignore some user or repo
 
 ## Installation
 

@@ -1,6 +1,8 @@
 class Repository < ActiveRecord::Base
   belongs_to :user
 
+  scope :preview, limit: 2
+
   # @fullname saberma/shopqi
   def self.get(fullname, json = nil, user = nil)
     repo = self.find_by_fullname(fullname)

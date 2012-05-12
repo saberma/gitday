@@ -1,9 +1,9 @@
-.day
-  %h1.title
-    Day 1
-    %small=@day.published_on.to_s(:db)
-  .row
-    .span16
+.row
+  .span16
+    .day
+      %h1.title
+        ==Day #{@day.number}
+        %small=@day.published_on.to_s(:db)
 
       -unless @followers.empty?
         .follower
@@ -12,8 +12,7 @@
           %ul.unstyled
             -@followers.each do |follower|
               %li
-                .row.content
-                  =render partial: 'user', object: follower.author
+                .row.content=render partial: 'user', object: follower.author
 
       -@watchers.each do |watcher|
         .watcher
@@ -25,8 +24,7 @@
         %ul.unstyled
           -watcher.authors.each do |author|
             %li
-              .row.content
-                =render partial: 'user', object: author.author
+              .row.content=render partial: 'user', object: author.author
 
       -unless @followings.empty?
         .followed
@@ -64,6 +62,13 @@
                   .span1
                     %span.badge.badge-info(rel="popover" data-content="#{watching.authors_name}" data-original-title="WATCHING BY")=watching.authors.size
 
-    .sidebar.span8
-      .well
-        twitter this.
+  .sidebar.span8
+    .well
+      %p
+        %a.twitter-share-button(href="https://twitter.com/share") Tweet
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      %p
+        Github Friend is an open-source software, you can 
+        =link_to 'View it on Github', 'https://github.com/saberma/github_friend'
+      %p Pull Requests are very welcome.

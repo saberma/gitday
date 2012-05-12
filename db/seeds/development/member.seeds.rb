@@ -14,23 +14,23 @@ unless Member.find_by_email(email)
 
     day.entries.create!([ # all data just for test.
       {
-        :author => "huacnlee",
+        :author => "tualatrix",
         :link => "rails/rails",
         :published_at => "2012-05-10T12:40:25Z",
         :short_id => "ForkEvent/1550818101"
       }, {
-        :author => "alexwilliamsca",
-        :link => "aphyr/riemann",
+        :author => "huacnlee",
+        :link => "twitter/bootstrap",
         :published_at => "2012-05-10T10:28:08Z",
         :short_id => "WatchEvent/1550818201"
       }, {
-        :author => "amiridis",
-        :link => "amiridis/amiridis.github.com",
+        :author => "livid",
+        :link => "henices/Tcp-DNS-proxy",
         :published_at => "2012-05-10T09:01:34Z",
         :short_id => "CreateEvent/1550818301"
       }, {
         :author => "lgn21st",
-        :link => "dhh",
+        :link => "ashchan",
         :published_at => "2012-05-10T08:11:52Z",
         :short_id => "FollowEvent/1550818401"
       }, { # yours

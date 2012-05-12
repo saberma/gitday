@@ -12,7 +12,7 @@
     %span.label(rel="tooltip" title="#{user.followers} followers")=user.followers
   %p.description=user.description
   .well
-    -user.repositories.limit(2).each do |repo|
+    -user.repositories.preview.each do |repo|
       %p
         =link_to repo.name, repo.uri
         -unless repo.language.blank?
