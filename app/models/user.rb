@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
         :avatar_url => json['avatar_url'],
         :gravatar_id => json['gravatar_id']
       })
-      repos = Octokit.repos(login)
+      repos = Octokit.repos(login, per_page: 100)
       repos.reject(&:fork).each do |json|
         Repository.get "#{login}/#{json['name']}", json, user
       end
@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
   end
 
   def description
-    info = [self.company]
-    info.unshift "based in #{self.location}" unless self.location.blank?
+    info = []
+    info << "based in #{self.location}" unless self.location.blank?
+    info << "working at #{self.company}" unless self.company.blank?
     info.compact.join(', ')
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510031315) do
+ActiveRecord::Schema.define(:version => 20120512051554) do
 
   create_table "days", :force => true do |t|
     t.integer "member_id",    :null => false
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20120510031315) do
 
   add_index "entries", ["day_id"], :name => "index_entries_on_day_id"
   add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
+
+  create_table "followers", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "author_id"
+    t.datetime "published_at"
+  end
+
+  add_index "followers", ["day_id"], :name => "index_followers_on_day_id"
 
   create_table "following_authors", :force => true do |t|
     t.integer  "following_id"
@@ -89,6 +97,20 @@ ActiveRecord::Schema.define(:version => 20120510031315) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "watcher_authors", :force => true do |t|
+    t.integer  "watcher_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+  end
+
+  create_table "watchers", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "repository_id"
+    t.datetime "published_at"
+  end
+
+  add_index "watchers", ["day_id"], :name => "index_watchers_on_day_id"
 
   create_table "watching_authors", :force => true do |t|
     t.integer  "watching_id"

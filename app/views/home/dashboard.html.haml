@@ -5,17 +5,28 @@
   .row
     .span16
 
-      -#
+      -unless @followers.empty?
         .follower
           .page-header
             %h6 YOUR NEW FOLLOWER:
+          %ul.unstyled
+            -@followers.each do |follower|
+              %li
+                .row.content
+                  =render partial: 'user', object: follower.author
 
+      -@watchers.each do |watcher|
         .watcher
           .page-header
             %h6
               YOUR
-              %small ShopQi
+              %small=watcher.repository.name
               WATCHER:
+        %ul.unstyled
+          -watcher.authors.each do |author|
+            %li
+              .row.content
+                =render partial: 'user', object: author.author
 
       -unless @followings.empty?
         .followed
@@ -23,31 +34,9 @@
             %h6 YOUR FRIENDS FOLLOWING:
           %ul.unstyled
             -@followings.each do |following|
-              -user = following.user
               %li
                 .row.content
-                  .span2
-                    =link_to user.uri do
-                      =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
-                  .span13
-                    %h5
-                      =link_to user.login, user.uri
-                      -unless user.blog.blank?
-                        %span.divider [
-                        =link_to user.blog, user.blog
-                        %span.divider ]
-                      %span.label(rel="tooltip" title="#{user.public_repos} public repos, #{user.repositories.size} non-fork repos")=user.public_repos
-                      %span.label(rel="tooltip" title="#{user.followers} followers")=user.followers
-                    %p.description=user.description
-                    .well
-                      -user.repositories.each do |repo|
-                        %p
-                          =link_to repo.name, repo.uri
-                          -unless repo.language.blank?
-                            %span.label=repo.language
-                          %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
-                          -unless repo.description.blank?
-                            %p=repo.description
+                  =render partial: 'user', object: following.user
                   .span1
                     %span.badge.badge-info(rel="popover" data-content="#{following.authors_name}" data-original-title="FOLLOWING BY")=following.authors.size
 

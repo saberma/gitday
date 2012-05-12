@@ -1,0 +1,22 @@
+.span2
+  =link_to user.uri do
+    =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
+.span13
+  %h5
+    =link_to user.login, user.uri
+    -unless user.blog.blank?
+      %span.divider [
+      =link_to user.blog, user.blog
+      %span.divider ]
+    %span.label(rel="tooltip" title="#{user.public_repos} public repos, #{user.repositories.size} non-fork repos")=user.public_repos
+    %span.label(rel="tooltip" title="#{user.followers} followers")=user.followers
+  %p.description=user.description
+  .well
+    -user.repositories.limit(2).each do |repo|
+      %p
+        =link_to repo.name, repo.uri
+        -unless repo.language.blank?
+          %span.label=repo.language
+        %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+        -unless repo.description.blank?
+          %p=repo.description

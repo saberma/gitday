@@ -10,6 +10,8 @@ class HomeController < ApplicationController
         @entries = @day.entries
         @watchings = @day.watchings
         @followings = @day.followings
+        @watchers = @day.watchers
+        @followers = @day.followers
         render :action => "dashboard" and return
       end
     end
