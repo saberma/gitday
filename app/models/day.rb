@@ -22,7 +22,7 @@ class Day < ActiveRecord::Base
   end
 
   def generate
-    self.entries.each do |entry|
+    self.entries.ungenerated.each do |entry|
       puts "generate:#{entry.short_id}"
       Day.transaction do
         if entry.all_watch_event?

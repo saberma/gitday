@@ -1,6 +1,8 @@
 class Entry < ActiveRecord::Base
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
 
+  scope :ungenerated, where(:generated => false)
+
   def generated!
     self.update_attributes! :generated => true
   end
