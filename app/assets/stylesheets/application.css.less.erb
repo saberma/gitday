@@ -70,6 +70,9 @@
 @navbarLinkColorHover: #999;
 @dropdownBackground: #fff;
 
+body {
+  background-image: url(<%= image_path('bg.gif') %>); }
+
 .navbar .container {
   width: 950px; }
 .navbar-inner {
@@ -81,8 +84,18 @@
   border-top-color: black;
   border-bottom-color: black; }
 
+#preview {
+  .row {
+    margin-bottom: 20px; }
+  h4 {
+    margin-bottom: 10px; }
+  img {
+    border: 1px solid #ccc; } }
+
 #main {
   margin-bottom: 40px;
+  background: #fff;
+  padding: 15px;
   .divider {
     color: #999; } }
 

@@ -14,7 +14,6 @@ class Member < ActiveRecord::Base
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    ap data
     if member = self.find_by_email(data.email)
       member
     else # Create a member with a stub password. 
