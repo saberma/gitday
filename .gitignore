@@ -4,6 +4,10 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+config/unicorn.conf.rb
+config/database.yml
+config/app_secret_config.yml
+
 # Ignore bundler config
 /.bundle
 
@@ -13,5 +17,3 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-config/app_secret_config.yml

@@ -24,4 +24,4 @@ Github Friend, making more friends, watching more repositories.
 
 ## Installation
 
-sudo apt-get install libcurl-dev
+sudo apt-get install libcurl-dev libcurl4-openssl-dev
