@@ -1,5 +1,7 @@
 require "rvm/capistrano"   # Fixed: ERROR: Gem bundler is not installed, run `gem install bundler` first
 require "bundler/capistrano"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 set :rvm_type, :user                                     # Copy the exact line. I really mean :user here
 set :rvm_ruby_string, 'ruby-1.9.3-p194'
 

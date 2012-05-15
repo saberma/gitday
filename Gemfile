@@ -26,6 +26,7 @@ gem 'less-rails-bootstrap'
 gem 'octokit'
 gem 'seedbank'
 gem 'daemons-rails'
+gem 'whenever', :require => false
 
 group :production do
   gem 'pg'

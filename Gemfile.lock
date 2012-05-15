@@ -41,6 +41,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    chronic (0.6.7)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -225,6 +226,9 @@ GEM
       raindrops (~> 0.6)
     warden (1.1.1)
       rack (>= 1.0)
+    whenever (0.7.3)
+      activesupport (>= 2.3.4)
+      chronic (~> 0.6.3)
 
 PLATFORMS
   ruby
@@ -257,3 +261,4 @@ DEPENDENCIES
   turn (~> 0.8.3)
   uglifier (>= 1.0.3)
   unicorn
+  whenever
