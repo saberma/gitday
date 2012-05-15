@@ -46,4 +46,24 @@ namespace :deploy do
 
 end
 
+namespace :daemons do
+
+  task :start do
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:start"
+  end
+
+  task :stop do
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:stop"
+  end
+
+  task :restart, roles: :app, except: { no_release: true } do
+    stop
+    start
+  end
+
+end
+
 before 'deploy:assets:precompile', 'deploy:symlink_shared'
+after 'deploy:restart', 'daemons:restart'
+after 'deploy:start', 'daemons:start'
+after 'deploy:stop', 'daemons:stop'

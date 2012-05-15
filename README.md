@@ -1,20 +1,7 @@
-Github Friend, making more friends, watching more repositories.
-
-## Feature
-
-* Show Watch, Follow Event, but filter Issues, PullRequest relative Event, so the dashboard should be clear.
-
-* Show users which were followed by your friend last day.
-
-* Show repositories which were watched by your friend last day.
-
-* Show your latest followers.
-
-* Show your repositories latest watchers.
+Github Friend
+make more friends, watchmore repositories.
 
 ## Future
-
-* Show watching and following author
 
 * Member can watch or follow
 
@@ -24,4 +11,6 @@ Github Friend, making more friends, watching more repositories.
 
 ## Installation
 
-sudo apt-get install libcurl-dev libcurl4-openssl-dev
+```sh
+$ sudo apt-get install libcurl-dev libcurl4-openssl-dev
+```

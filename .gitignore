@@ -16,4 +16,5 @@ config/app_secret_config.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.pid
 /tmp

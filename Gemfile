@@ -25,6 +25,7 @@ gem 'settingslogic'
 gem 'less-rails-bootstrap'
 gem 'octokit'
 gem 'seedbank'
+gem 'daemons-rails'
 
 group :production do
   gem 'pg'
