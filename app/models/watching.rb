@@ -3,10 +3,6 @@ class Watching < ActiveRecord::Base
   belongs_to :repository
   has_many :authors, dependent: :destroy, :class_name => 'WatchingAuthor' # who watching this repository
 
-  def authors_name
-    self.authors.map(&:author).map(&:name).join(', ')
-  end
-
   module Extension
 
     def day

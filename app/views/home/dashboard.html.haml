@@ -13,7 +13,7 @@
             %ul.unstyled
               -@followers.each do |follower|
                 %li
-                  .row.content=render partial: 'user', object: follower.author
+                  .row.content=render partial: 'user', object: follower.author, locals: { following: nil }
 
         -@watchers.each do |watcher|
           .watcher
@@ -25,7 +25,7 @@
           %ul.unstyled
             -watcher.authors.each do |author|
               %li
-                .row.content=render partial: 'user', object: author.author
+                .row.content=render partial: 'user', object: author.author, locals: { following: nil }
 
         -unless @followings.empty?
           .followed
@@ -34,10 +34,7 @@
             %ul.unstyled
               -@followings.each do |following|
                 %li
-                  .row.content
-                    =render partial: 'user', object: following.user
-                    .span1
-                      %span.badge.badge-info(rel="popover" data-content="#{following.authors_name}" data-original-title="FOLLOWING BY")=following.authors.size
+                  .row.content=render partial: 'user', object: following.user, locals: { following: following }
 
         -unless @watchings.empty?
           .watched
@@ -51,7 +48,7 @@
                     .span2
                       =link_to repo.uri do
                         =image_tag repo.user.avatar_url, style: 'width: 70px; height: 70px;'
-                    .span13
+                    .span14
                       %h5
                         =link_to repo.user.login, repo.user.uri
                         %span.divider /
@@ -60,8 +57,7 @@
                           %span.label=repo.language
                         %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
                       %p.description=repo.description
-                    .span1
-                      %span.badge.badge-info(rel="popover" data-content="#{watching.authors_name}" data-original-title="WATCHING BY")=watching.authors.size
+                      %p.pull-right=render partial: 'friend', collection: watching.authors.preview
     -else
       .alert.alert-info We will parse your NEWS FEED at 24:00, after that you can see a daily report like below.
       =image_tag 'preview.png'

@@ -3,10 +3,6 @@ class Following < ActiveRecord::Base
   belongs_to :user
   has_many :authors, dependent: :destroy, :class_name => 'FollowingAuthor' # who follow this user
 
-  def authors_name
-    self.authors.map(&:author).map(&:name).join(', ')
-  end
-
   module Extension
 
     def day

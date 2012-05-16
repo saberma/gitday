@@ -10,4 +10,4 @@
 $(document).ready ->
   $('.dropdown-toggle').dropdown()
   $('#main').tooltip selector: "span[rel=tooltip], a[rel=tooltip]"
-  $('#main').popover selector: "span[rel=popover]", placement: "left"
+  $('#main').popover selector: "img[rel=popover]", placement: "top"

@@ -1,7 +1,7 @@
 .span2
   =link_to user.uri do
     =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
-.span13
+.span14
   %h5
     =link_to user.login, user.uri
     -unless user.blog.blank?
@@ -20,3 +20,5 @@
         %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
         -unless repo.description.blank?
           %p=repo.description
+  -if following
+    %p.pull-right=render partial: 'friend', collection: following.authors.preview
