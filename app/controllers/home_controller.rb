@@ -7,11 +7,11 @@ class HomeController < ApplicationController
         redirect_to member_token_path
       else
         @day = current_member.days.latest || current_member.days.new
-        @entries = @day.entries
         @watchings = @day.watchings
         @followings = @day.followings
         @watchers = @day.watchers
         @followers = @day.followers
+        @empty = [@watching, @following, @watchers, @followers].none?
         render :action => "dashboard" and return
       end
     end

@@ -58,6 +58,8 @@
                         %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
                       %p.description=repo.description
                       %p.pull-right=render partial: 'friend', collection: watching.authors.preview
+        -if @empty
+          .alert.alert-info Today your friend do not have activity.
     -else
       .alert.alert-info We will parse your NEWS FEED at 24:00, after that you can see a daily report like below.
       =image_tag 'preview.png'
