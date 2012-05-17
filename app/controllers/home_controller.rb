@@ -11,7 +11,7 @@ class HomeController < ApplicationController
         @followings = @day.followings
         @watchers = @day.watchers
         @followers = @day.followers
-        @empty = [@watching, @following, @watchers, @followers].none?
+        @empty = [@watchings, @followings, @watchers, @followers].map(&:empty?).all?
         render :action => "dashboard" and return
       end
     end
