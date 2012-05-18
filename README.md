@@ -1,5 +1,5 @@
 Github Friend
-make more friends, watchmore repositories.
+Make more friends, watch more repositories.
 
 ## Future
 
