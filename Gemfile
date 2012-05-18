@@ -55,4 +55,5 @@ group :test do
   gem 'turn', '~> 0.8.3', :require => false
   gem "rspec-rails"
   gem 'database_cleaner'
+  gem 'spork'
 end

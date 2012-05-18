@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-16T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:CreateEvent/1553086107</id>
+    <published>2012-05-16T05:12:33Z</published>
+    <updated>2012-05-16T05:12:33Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/ging/social_stream/tree/v0.26.2"/>
+    <title type="html">atd created tag ging/social_stream/tree/v0.26.2</title>
+    <author>
+      <name>atd</name>
+      <uri>https://github.com/atd</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/fbdd0d26ec0146cbe4e22318fc5341b5?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html"></content>
+  </entry>
+</feed>

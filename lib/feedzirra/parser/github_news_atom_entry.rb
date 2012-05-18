@@ -37,20 +37,24 @@ module Feedzirra
 
       def link
         if fork_event? # title: saberma forked rails/rails, uri: saberma/rails
-          title.sub "#{author.name} forked", ''
+          title.sub "#{author.name} forked ", ''
         else
           uri.sub 'https://github.com/', ''
         end
       end
 
       def ignore?
-        !EVENT.include? event
+        !EVENT.include?(event) or create_tag_event?
       end
 
       begin 'events'
 
         def fork_event?
           event == 'ForkEvent'
+        end
+
+        def create_tag_event?
+          title.include?('created tag')
         end
 
       end
