@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512051554) do
+ActiveRecord::Schema.define(:version => 20120518114241) do
 
   create_table "days", :force => true do |t|
     t.integer "member_id",    :null => false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120512051554) do
     t.string   "etag",                :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token",      :limit => 64
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true

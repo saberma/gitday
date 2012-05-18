@@ -5,6 +5,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @member = Member.find_for_github_oauth(request.env["omniauth.auth"], current_member)
 
     if @member.persisted?
+      @member.remember_me = true
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Github"
       sign_in_and_redirect @member, :event => :authentication
     else
