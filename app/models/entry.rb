@@ -8,7 +8,7 @@ class Entry < ActiveRecord::Base
   end
 
   def uri
-    "https://github.com/#{self.link}"
+    "https://github.com/#{self.link.strip}"
   end
 
   def event
@@ -16,11 +16,11 @@ class Entry < ActiveRecord::Base
   end
 
   def following_user
-    link if all_follow_event?
+    link.strip if all_follow_event?
   end
 
   def watching_repository
-    link if all_watch_event?
+    link.strip if all_watch_event?
   end
 
   begin 'events'
