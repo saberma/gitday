@@ -10,7 +10,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer'
+  gem 'therubyracer', required: nil unless ENV['TRAVIS']
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -33,7 +33,9 @@ group :production do
 end
 
 group :development, :test do
-  gem "awesome_print", require: 'ap'
+  unless ENV['TRAVIS']
+    gem "awesome_print", require: 'ap'
+  end
   gem "factory_girl"
   gem "factory_girl_rails"
   gem 'sqlite3'
