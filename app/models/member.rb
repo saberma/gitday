@@ -23,8 +23,7 @@ class Member < ActiveRecord::Base
 
   def self.generate_daily_report
     Member.all.each do |member|
-      day = member.days.first
-      day.generate if day
+      member.days.in_a_week.each(&:generate)
     end
   end
 

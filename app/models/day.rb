@@ -6,6 +6,8 @@ class Day < ActiveRecord::Base
   has_many :watchers  , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
   has_many :followers , dependent: :destroy, order: 'id desc'
 
+  scope :in_a_week, limit: 7
+
   def self.latest
     where(["published_on < ?", Date.today]).first
   end
