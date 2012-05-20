@@ -56,7 +56,8 @@ class Member < ActiveRecord::Base
                   })
                 end
               end
-              member.update_attributes! :etag => feed.etag
+              member.etag = feed.etag
+              member.save
             end
           end
         end
