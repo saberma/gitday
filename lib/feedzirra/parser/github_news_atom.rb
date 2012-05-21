@@ -19,6 +19,12 @@ module Feedzirra
       def entries
         orig_entries.reject(&:ignore?)
       end
+
+      def etag_with_strip # remove etag quote
+        etag_without_strip.gsub /"/, ''
+      end
+
+      alias_method_chain :etag, :strip
     end
   end
 end
