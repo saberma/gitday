@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :member do
-    end
+    email 'mahb45@gmail.com'
+    token SecretSetting.author.token
+    login 'saberma'
+  end
 end

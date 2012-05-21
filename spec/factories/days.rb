@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :day do
-    end
+    association :member, factory: :member
+    number 1
+    published_on '2012-05-21'
+  end
 end

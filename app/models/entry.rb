@@ -1,4 +1,5 @@
 class Entry < ActiveRecord::Base
+  belongs_to :day
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
 
   scope :ungenerated, where(:generated => false)

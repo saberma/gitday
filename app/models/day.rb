@@ -38,7 +38,7 @@ class Day < ActiveRecord::Base
           repo = Repository.get(entry.watching_repository)
           if repo.user.login == self.member.login # your repo?
             watcher = self.watchers.on entry.watching_repository
-            watcher.authors.create author: author
+            watcher.authors.add author
           else
             watching = self.watchings.on entry.watching_repository
             watching.authors.create author: author
