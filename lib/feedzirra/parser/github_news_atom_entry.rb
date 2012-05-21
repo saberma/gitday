@@ -44,7 +44,7 @@ module Feedzirra
       end
 
       def ignore?
-        !EVENT.include?(event) or create_tag_event?
+        !EVENT.include?(event) or create_tag_event? or create_branch_event?
       end
 
       begin 'events'
@@ -54,7 +54,11 @@ module Feedzirra
         end
 
         def create_tag_event?
-          title.include?('created tag')
+          event == 'CreateEvent' and title.include?('created tag')
+        end
+
+        def create_branch_event?
+          event == 'CreateEvent' and title.include?('created branch')
         end
 
       end

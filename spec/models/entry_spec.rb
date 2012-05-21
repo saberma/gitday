@@ -22,6 +22,16 @@ describe Entry do
 
     end
 
+    context 'Branch' do
+
+      let(:file) { "create_event_branch.xml" }
+
+      it 'should be ignore' do
+        entry.should be_nil
+      end
+
+    end
+
   end
 
   context 'ForkEvent' do
