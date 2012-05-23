@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
     info << "working at #{self.company}" unless self.company.blank?
     info.compact.join(', ')
   end
+
+  def blog
+    (super.start_with?('http://') or super.start_with?('https://')) ? super : "http://#{super}"
+  end
 end
