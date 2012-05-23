@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-16T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:WatchEvent/1554383709</id>
+    <published>2012-05-21T23:52:31Z</published>
+    <updated>2012-05-21T23:52:31Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/maoe/rrd4clj"/>
+    <title type="html">sjl started watching maoe/rrd4clj</title>
+    <author>
+      <name>sjl</name>
+      <email>steve@stevelosh.com</email>
+      <uri>https://github.com/sjl</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/143487689572bcc7084c2b6aa1f48c46?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html"></content>
+  </entry>
+</feed>

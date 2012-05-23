@@ -6,4 +6,10 @@ FactoryGirl.define do
     token SecretSetting.author.token
     login 'saberma'
   end
+
+  factory :member_camelsong, parent: :member do
+    email 'camelsong@example.com'
+    token 'camelsong'
+    login 'camelsong'
+  end
 end

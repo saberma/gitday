@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120520030358) do
+ActiveRecord::Schema.define(:version => 20120523021918) do
 
   create_table "days", :force => true do |t|
     t.integer "member_id",    :null => false
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20120520030358) do
   end
 
   add_index "entries", ["day_id"], :name => "index_entries_on_day_id"
-  add_index "entries", ["short_id"], :name => "index_entries_on_short_id", :unique => true
 
   create_table "followers", :force => true do |t|
     t.integer  "day_id"
