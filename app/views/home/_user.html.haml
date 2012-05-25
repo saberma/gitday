@@ -8,17 +8,17 @@
       %span.divider [
       =link_to user.blog, user.blog
       %span.divider ]
-    %span.label(rel="tooltip" title="#{user.public_repos} public repos, #{user.repositories.size} non-fork repos")=user.public_repos
-    %span.label(rel="tooltip" title="#{user.followers} followers")=user.followers
   %p.description=user.description
-  .well
-    -user.repositories.preview.each do |repo|
-      %p
-        =link_to repo.name, repo.uri
-        -unless repo.language.blank?
-          %span.label=repo.language
-        %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
-        -unless repo.description.blank?
-          %p=repo.description
+  - repos = user.repositories.preview
+  - unless repos.empty?
+    .well
+      -repos.each do |repo|
+        %p
+          =link_to repo.name, repo.uri
+          -unless repo.language.blank?
+            %span.label=repo.language
+          %span.label(rel="tooltip" title="#{repo.watchers} watchers")=repo.watchers
+          -unless repo.description.blank?
+            %p=repo.description
   -if following
-    %p.pull-right=render partial: 'friend', collection: following.authors.preview
+    %p.pull-right.authors=render partial: 'friend', collection: following.authors.preview

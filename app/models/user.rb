@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   def description
     info = []
+    info << "has #{self.public_repos} public repos and #{self.followers} followers"
     info << "based in #{self.location}" unless self.location.blank?
     info << "working at #{self.company}" unless self.company.blank?
     info.compact.join(', ')
