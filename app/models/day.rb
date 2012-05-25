@@ -48,7 +48,7 @@ class Day < ActiveRecord::Base
             self.followers.add author
           else
             following = self.followings.with entry.following_user
-            following.authors.create author: author
+            following.authors.add author
           end
         end
         entry.generated!

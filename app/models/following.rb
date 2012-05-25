@@ -1,7 +1,7 @@
 class Following < ActiveRecord::Base
   belongs_to :day
   belongs_to :user
-  has_many :authors, dependent: :destroy, :class_name => 'FollowingAuthor' # who follow this user
+  has_many :authors, dependent: :destroy, :class_name => 'FollowingAuthor', extend: FollowingAuthor::Extension # who follow this user
 
   module Extension
 
