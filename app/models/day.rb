@@ -4,7 +4,7 @@ class Day < ActiveRecord::Base
   has_many :followings, dependent: :destroy, order: 'id desc', extend: Following::Extension
   has_many :watchings , dependent: :destroy, order: 'id desc', extend: Watching::Extension
   has_many :watchers  , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
-  has_many :followers , dependent: :destroy, order: 'id desc'
+  has_many :followers , dependent: :destroy, order: 'id desc', extend: Follower::Extension
 
   scope :in_a_week, limit: 7
 
@@ -45,7 +45,7 @@ class Day < ActiveRecord::Base
           end
         elsif entry.all_follow_event?
           if entry.following_user == self.member.login
-            self.followers.create author: author
+            self.followers.add author
           else
             following = self.followings.with entry.following_user
             following.authors.create author: author
