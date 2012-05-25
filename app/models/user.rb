@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def blog
+    return unless super
     (super.start_with?('http://') or super.start_with?('https://')) ? super : "http://#{super}"
   end
 end

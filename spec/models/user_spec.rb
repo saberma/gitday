@@ -13,6 +13,17 @@ describe User do
       u.blog.should eql 'https://saberma.me'
     end
 
+    context 'is nil' do
+
+      it 'should not raise error' do
+        expect do
+          u = User.new
+          u.blog
+        end.should_not raise_error
+      end
+
+    end
+
   end
 
 end
