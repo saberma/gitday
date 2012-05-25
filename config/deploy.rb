@@ -63,6 +63,11 @@ namespace :daemons do
     start
   end
 
+  desc "Daemons status"
+  task :status do
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:status"
+  end
+
 end
 
 before 'deploy:assets:precompile', 'deploy:symlink_shared'
