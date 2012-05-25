@@ -41,7 +41,7 @@ class Day < ActiveRecord::Base
             watcher.authors.add author
           else
             watching = self.watchings.on entry.watching_repository
-            watching.authors.create author: author
+            watching.authors.add author
           end
         elsif entry.all_follow_event?
           if entry.following_user == self.member.login

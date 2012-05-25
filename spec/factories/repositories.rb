@@ -7,4 +7,11 @@ FactoryGirl.define do
     language 'ruby'
     watchers 245
   end
+
+  factory :ajax_crud, class: Repository do
+    association :user, factory: :camelsong
+    fullname 'camelsong/AjaxCRUD'
+    language 'ruby'
+    watchers 4
+  end
 end

@@ -26,4 +26,16 @@ FactoryGirl.define do
     avatar_url 'https://secure.gravatar.com/avatar/ab989bfcd6ed51d34250507f7a248653?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png'
     gravatar_id 'ab989bfcd6ed51d34250507f7a248653'
   end
+
+  factory :ichord, class: User do
+    login :ichord
+    name :chord
+    company :person
+    location 'new zealand'
+    public_repos 8
+    followers 9
+    following 11
+    avatar_url 'https://secure.gravatar.com/avatar/433967a57ccd76de553af35e01821959?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png'
+    gravatar_id '433967a57ccd76de553af35e01821959'
+  end
 end
