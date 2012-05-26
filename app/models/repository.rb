@@ -18,6 +18,7 @@ class Repository < ActiveRecord::Base
       })
     end
     repo
+  rescue Octokit::NotFound
   end
 
   def name

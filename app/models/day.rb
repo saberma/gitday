@@ -36,6 +36,7 @@ class Day < ActiveRecord::Base
         author = User.get(entry.author)
         if entry.all_watch_event?
           repo = Repository.get(entry.watching_repository)
+          next unless repo # repo was destroyed
           if repo.user.login == self.member.login # your repo?
             watcher = self.watchers.on entry.watching_repository
             watcher.authors.add author
