@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   has_many :repositories, order: 'watchers desc'
 
+  before_validation do
+    self.company = self.company[0, 64] if company and company.size > 64
+  end
+
   def self.get(login)
     user = self.find_by_login(login)
     unless user
