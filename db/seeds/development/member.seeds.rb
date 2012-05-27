@@ -1,10 +1,10 @@
-email = SecretSetting.author.email
+email = SecretSetting.member.email
 unless Member.find_by_email(email)
   Member.transaction do
     member = Member.create!(
       :email => email,
-      :login => SecretSetting.author.login,
-      :token => SecretSetting.author.token
+      :login => SecretSetting.member.login,
+      :token => SecretSetting.member.token
     )
 
     day = member.days.create!(

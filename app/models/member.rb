@@ -25,6 +25,8 @@ class Member < ActiveRecord::Base
     Member.all.each do |member|
       member.days.in_a_week.each(&:generate)
     end
+  rescue => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
   end
 
   def self.get_news_feed
@@ -63,6 +65,8 @@ class Member < ActiveRecord::Base
         end
       end
     end
+  rescue => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
   end
 
 end

@@ -27,6 +27,7 @@ gem 'octokit'
 gem 'seedbank'
 gem 'daemons-rails'
 gem 'whenever', :require => false
+gem 'exception_notification'
 
 group :production do
   gem 'pg'
