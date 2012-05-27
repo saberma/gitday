@@ -28,6 +28,7 @@ gem 'seedbank'
 gem 'daemons-rails'
 gem 'whenever', :require => false
 gem 'exception_notification'
+gem 'letter_opener'
 
 group :production do
   gem 'pg'

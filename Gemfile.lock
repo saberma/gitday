@@ -103,6 +103,8 @@ GEM
       thor (~> 0.14)
     json (1.7.3)
     kgio (2.6.0)
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.2)
@@ -110,6 +112,8 @@ GEM
       less (~> 2.2.0)
     less-rails-bootstrap (2.0.12)
       less-rails (~> 2.2.0)
+    letter_opener (0.0.2)
+      launchy
     libv8 (3.3.10.4)
     loofah (1.2.1)
       nokogiri (>= 1.4.4)
@@ -250,6 +254,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   less-rails-bootstrap
+  letter_opener
   octokit
   omniauth-github
   pg
