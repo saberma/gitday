@@ -30,7 +30,7 @@
         -unless @followings.empty?
           .followed
             .page-header
-              %h6 YOUR FRIENDS FOLLOWING:
+              %h6 YOUR FRIENDS ARE FOLLOWING:
             %ul.unstyled
               -@followings.each do |following|
                 %li
@@ -39,7 +39,7 @@
         -unless @watchings.empty?
           .watched
             .page-header
-              %h6 YOUR FRIENDS WATCHING:
+              %h6 YOUR FRIENDS ARE WATCHING:
             %ul.unstyled
               -@watchings.each do |watching|
                 -repo = watching.repository
