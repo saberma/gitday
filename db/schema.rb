@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523021918) do
+ActiveRecord::Schema.define(:version => 20120601151256) do
 
   create_table "days", :force => true do |t|
     t.integer "member_id",    :null => false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120523021918) do
     t.string   "short_id",     :limit => 32
     t.integer  "day_id"
     t.string   "link",         :limit => 128
-    t.string   "author",       :limit => 32
+    t.string   "author",       :limit => 64
     t.boolean  "generated",                   :default => false
     t.datetime "published_at"
   end
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20120523021918) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login",        :limit => 32
-    t.string   "name",         :limit => 32
+    t.string   "login",        :limit => 64
+    t.string   "name",         :limit => 64
     t.string   "company",      :limit => 64
     t.string   "blog",         :limit => 128
     t.string   "location",     :limit => 64
