@@ -27,6 +27,7 @@ class Member < ActiveRecord::Base
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
+    raise e
   end
 
   def self.get_news_feed
