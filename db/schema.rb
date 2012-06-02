@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601151256) do
+ActiveRecord::Schema.define(:version => 20120602092748) do
 
   create_table "days", :force => true do |t|
     t.integer "member_id",    :null => false
@@ -55,19 +55,20 @@ ActiveRecord::Schema.define(:version => 20120601151256) do
   add_index "followings", ["day_id"], :name => "index_followings_on_day_id"
 
   create_table "members", :force => true do |t|
-    t.string   "email",               :limit => 128,                :null => false
+    t.string   "email",               :limit => 128,                   :null => false
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                      :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  :limit => 32
     t.string   "last_sign_in_ip",     :limit => 32
-    t.string   "login",               :limit => 128,                :null => false
+    t.string   "login",               :limit => 128,                   :null => false
     t.string   "token",               :limit => 32
     t.string   "etag",                :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token",      :limit => 64
+    t.boolean  "subscribed",                         :default => true
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true

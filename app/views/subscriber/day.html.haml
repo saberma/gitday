@@ -1,0 +1,65 @@
+!!!
+%html(lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="content-type")
+    =stylesheet_link_tag "email"
+
+  %body
+    %p.tip
+      =link_to 'View this on github-friend.com', '/'
+      if you can't see the images.
+    .day
+      %h1.title
+        ==Day #{@day.number}
+        %small=@day.published_on.to_s(:db)
+
+      -unless @followers.empty?
+        %table.follower
+          %tr
+            %td.page-header(colspan=2)
+              %h6 YOUR NEW FOLLOWER:
+          -@followers.each do |follower|
+            %tr.unstyled=render partial: 'subscriber/user', object: follower.author, locals: { following: nil }
+
+      -@watchers.each do |watcher|
+        %table.watcher
+          %tr.page-header
+            %td(colspan=2)
+              %h6
+                YOUR
+                %small=watcher.repository.name
+                WATCHER:
+          -watcher.authors.each do |author|
+            %tr=render partial: 'subscriber/user', object: author.author, locals: { following: nil }
+
+      -unless @followings.empty?
+        %table.followed
+          %tr.page-header
+            %td(colspan=2)
+              %h6 YOUR FRIENDS ARE FOLLOWING:
+          -@followings.each do |following|
+            %tr=render partial: 'subscriber/user', object: following.user, locals: { following: following }
+
+      -unless @watchings.empty?
+        %table.watched
+          %tr.page-header
+            %td(colspan=2)
+              %h6 YOUR FRIENDS ARE WATCHING:
+          -@watchings.each do |watching|
+            %tr.unstyled
+              -repo = watching.repository
+              %td.avatar
+                =link_to repo.uri do
+                  =image_tag repo.user.avatar_url, style: 'width: 80px; height: 80px;'
+              %td
+                %h5
+                  =link_to repo.user.login, repo.user.uri
+                  %span.divider /
+                  =link_to repo.name, repo.uri
+                  -unless repo.language.blank?
+                    %span.label=repo.language
+                  %span.label(title="#{repo.watchers} watchers")=repo.watchers
+                %p.description=repo.description
+                %p.pull-right=render partial: 'subscriber/friend', collection: watching.authors.preview
+    %p.tip
+      =link_to 'unsubscribe', '/unsubscribe'

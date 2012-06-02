@@ -16,4 +16,14 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def mail
+    @day = current_member.days.latest
+    @watchings = @day.watchings
+    @followings = @day.followings
+    @watchers = @day.watchers
+    @followers = @day.followers
+    @empty = [@watchings, @followings, @watchers, @followers].map(&:empty?).all?
+    render 'subscriber/day', layout: nil
+  end
 end

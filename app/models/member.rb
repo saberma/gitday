@@ -30,6 +30,15 @@ class Member < ActiveRecord::Base
     raise e
   end
 
+  def self.send_daily
+    Member.all.each do |member|
+      Subscriber.day(member).deliver!
+    end
+  rescue => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
+    raise e
+  end
+
   def self.get_news_feed
     Member.all.each do |member|
       name = member.login

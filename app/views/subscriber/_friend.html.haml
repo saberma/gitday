@@ -1,0 +1,4 @@
+-author = friend.author
+-title = "by @#{author.login}(#{author.name})"
+=link_to author.uri do
+  =image_tag author.avatar_url, style: 'width: 16px; height: 16px;', title: title, alt: title

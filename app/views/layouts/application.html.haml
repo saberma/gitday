@@ -25,6 +25,12 @@
                       %i.icon-lock
                       Token
                   %li.divider
+                  -unless current_member.subscribed
+                    %li
+                      =link_to members_subscribe_path do
+                        %i.icon-envelope
+                        Subscribe To Mail
+                    %li.divider
                   %li
                     =link_to sign_out_path do
                       %i.icon-off
@@ -32,4 +38,6 @@
             -else
               %li=link_to 'Sign in with Github', member_omniauth_authorize_path(:github)
     #main.container
+      -unless flash[:notice].blank?
+        .alert.alert-info=flash[:notice]
       = yield

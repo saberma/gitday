@@ -29,6 +29,7 @@ gem 'daemons-rails'
 gem 'whenever', :require => false
 gem 'exception_notification'
 gem 'letter_opener'
+gem 'roadie'
 
 group :production do
   gem 'pg'

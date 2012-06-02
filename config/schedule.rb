@@ -23,3 +23,7 @@
 every 1.day, :at => '0:30 am' do 
   runner "Member.generate_daily_report"
 end
+
+every 1.day, :at => '7:30 am' do
+  runner "Member.send_daily"
+end
