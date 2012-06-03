@@ -7,10 +7,10 @@ GithubFriend::Application.routes.draw do
   root :to => "home#index"
 
   get '/mail', to: 'home#mail' # just for mail test
-  get '/members/token', to: 'members/token#edit', :as => :member_token
-  put '/members/token', to: 'members/token#update'
+  get '/member/token', to: 'members/token#edit', :as => :member_token
+  put '/member/token', to: 'members/token#update'
 
-  get '/members/unsubscribe', to: 'members/subscriber#update', :as => :member_unsubscribe
-  get '/members/subscribe', to: 'members/subscriber#create', :as => :member_subscribe
+  get '/member/unsubscribe', to: 'members/subscribe#update', :as => :member_unsubscribe
+  get '/member/subscribe', to: 'members/subscribe#create', :as => :member_subscribe
 
 end

@@ -7,17 +7,12 @@ class Subscriber < ActionMailer::Base
   #   en.subscriber.day.subject
   #
   def day(member)
-    return unless member.subscribed
-    return unless member.login == 'saberma' # test first
     puts "sending for #{member.login}"
     @day = member.days.latest
-    if @day
-      @watchings = @day.watchings
-      @followings = @day.followings
-      @watchers = @day.watchers
-      @followers = @day.followers
-      @empty = [@watchings, @followings, @watchers, @followers].map(&:empty?).all?
-      mail to: "#{member.login} <#{member.email}>", subject: "Day ##{@day.number}" unless @empty
-    end
+    @watchings = @day.watchings
+    @followings = @day.followings
+    @watchers = @day.watchers
+    @followers = @day.followers
+    mail from: "Github Friend <admin@github-friend.com>", to: "#{member.login} <#{member.email}>", subject: "Day ##{@day.number}"
   end
 end

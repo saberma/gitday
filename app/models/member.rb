@@ -32,7 +32,10 @@ class Member < ActiveRecord::Base
 
   def self.send_daily
     Member.all.each do |member|
-      Subscriber.day(member).deliver!
+      if member.subscribed and member.login == 'saberma' and (day = member.days.latest)
+        empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
+        Subscriber.day(member).deliver! unless empty
+      end
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)

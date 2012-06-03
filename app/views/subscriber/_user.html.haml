@@ -1,13 +1,14 @@
-%td.avatar
-  =link_to user.uri do
-    =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
-%td
-  %h5
-    =link_to user.login, user.uri
-    -unless user.blog.blank?
-      %span.divider [
-      =link_to user.blog, user.blog
-      %span.divider ]
-  %p.description=user.description
-  -if following
-    %p.pull-right.authors=render partial: 'friend', collection: following.authors.preview
+%tr.item
+  %td.avatar
+    =link_to user.uri do
+      =image_tag user.avatar_url, style: 'width: 70px; height: 70px;'
+  %td
+    %h5
+      =link_to user.login, user.uri
+      -unless user.blog.blank?
+        %span.divider [
+        =link_to user.blog, user.blog
+        %span.divider ]
+    %p.description=user.description
+    -if following
+      %p.pull-right.authors=render partial: 'friend', collection: following.authors.preview

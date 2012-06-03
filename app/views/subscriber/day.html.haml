@@ -6,7 +6,7 @@
 
   %body
     %p.tip
-      =link_to 'View this on github-friend.com', '/'
+      =link_to 'View this on github-friend.com', root_url
       if you can't see the images.
     .day
       %h1.title
@@ -19,7 +19,7 @@
             %td.page-header(colspan=2)
               %h6 YOUR NEW FOLLOWER:
           -@followers.each do |follower|
-            %tr.unstyled=render partial: 'subscriber/user', object: follower.author, locals: { following: nil }
+            =render partial: 'subscriber/user', object: follower.author, locals: { following: nil }
 
       -@watchers.each do |watcher|
         %table.watcher
@@ -30,7 +30,7 @@
                 %small=watcher.repository.name
                 WATCHER:
           -watcher.authors.each do |author|
-            %tr=render partial: 'subscriber/user', object: author.author, locals: { following: nil }
+            =render partial: 'subscriber/user', object: author.author, locals: { following: nil }
 
       -unless @followings.empty?
         %table.followed
@@ -38,7 +38,7 @@
             %td(colspan=2)
               %h6 YOUR FRIENDS ARE FOLLOWING:
           -@followings.each do |following|
-            %tr=render partial: 'subscriber/user', object: following.user, locals: { following: following }
+            =render partial: 'subscriber/user', object: following.user, locals: { following: following }
 
       -unless @watchings.empty?
         %table.watched
@@ -46,7 +46,7 @@
             %td(colspan=2)
               %h6 YOUR FRIENDS ARE WATCHING:
           -@watchings.each do |watching|
-            %tr.unstyled
+            %tr.item
               -repo = watching.repository
               %td.avatar
                 =link_to repo.uri do
@@ -62,4 +62,4 @@
                 %p.description=repo.description
                 %p.pull-right=render partial: 'subscriber/friend', collection: watching.authors.preview
     %p.tip
-      =link_to 'unsubscribe', '/unsubscribe'
+      =link_to 'unsubscribe', member_unsubscribe_url
