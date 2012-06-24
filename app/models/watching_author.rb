@@ -1,6 +1,7 @@
 class WatchingAuthor < ActiveRecord::Base
   belongs_to :watching
   belongs_to :author, :class_name => 'User'
+  attr_accessible :author
 
   scope :preview, limit: 10
 

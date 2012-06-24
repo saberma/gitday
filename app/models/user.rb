@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :repositories, order: 'watchers desc'
+  attr_accessible :login, :name, :company, :blog, :location, :public_repos, :followers, :following, :avatar_url, :gravatar_id
 
   before_validation do
     self.company = self.company[0, 64] if company and company.size > 64

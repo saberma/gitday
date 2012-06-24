@@ -2,6 +2,7 @@ class Watcher < ActiveRecord::Base
   belongs_to :day
   belongs_to :repository
   has_many :authors, dependent: :destroy, :class_name => 'WatcherAuthor', extend: WatcherAuthor::Extension # who watch this repo
+  attr_accessible :repository
 
   module Extension
 

@@ -2,6 +2,7 @@ class Entry < ActiveRecord::Base
   belongs_to :day
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
 
+  attr_accessible :short_id, :link, :author, :generated, :published_at
   scope :ungenerated, where(:generated => false)
 
   def generated!

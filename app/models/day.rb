@@ -6,6 +6,8 @@ class Day < ActiveRecord::Base
   has_many :watchers  , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
   has_many :followers , dependent: :destroy, order: 'id desc', extend: Follower::Extension
 
+  attr_accessible :number, :published_on, :sended
+
   scope :in_a_week, limit: 7
 
   module Extension # http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html #Association extensions

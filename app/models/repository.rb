@@ -1,5 +1,6 @@
 class Repository < ActiveRecord::Base
   belongs_to :user
+  attr_accessible :user, :fullname, :description, :homepage, :language, :watchers
 
   scope :preview, limit: 2
 
@@ -10,7 +11,7 @@ class Repository < ActiveRecord::Base
       json ||= Octokit.repo(fullname)
       repo = self.create({
         :fullname => fullname,
-        :user => user || User.get(json['owner']['login']),
+        :user => (user || User.get(json['owner']['login'])),
         :description => json['description'],
         :homepage => json['homepage'],
         :language => json['language'],
