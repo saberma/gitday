@@ -1,4 +1,5 @@
-Gitday
+## Gitday
+
 organize your GITHUB NEWS FEED every day.
 
 ## Future
