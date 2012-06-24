@@ -1,11 +1,11 @@
-# scp -P $CAP_PORT config/nginx github@www.github-friend.com:/etc/nginx/sites-available/github-friend
-upstream github-friend {
+# scp -P $CAP_PORT config/nginx github@www.gitday.com:/etc/nginx/sites-available/gitday
+upstream gitday {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
 
   # for UNIX domain socket setups:
-  server unix:/tmp/github-friend.socket fail_timeout=0;
+  server unix:/tmp/gitday.socket fail_timeout=0;
 }
 
 server {
@@ -14,15 +14,15 @@ server {
     listen 80;
 
     # you could put a list of other domain names this application answers
-    server_name www.github-friend.com github-friend.com;
+    server_name www.gitday.com gitday.com;
 
-    root /home/github/apps/github-friend/current/public;
-    access_log /var/log/nginx/github-friend_access.log;
+    root /home/github/apps/gitday/current/public;
+    access_log /var/log/nginx/gitday_access.log;
     rewrite_log on;
 
     location / {
         #all requests are sent to the UNIX socket
-        proxy_pass  http://github-friend;
+        proxy_pass  http://gitday;
         proxy_redirect     off;
 
         proxy_set_header   Host             $host;
@@ -47,7 +47,7 @@ server {
     # cache the resource and navigate faster over the website
     # this probably needs some work with Rails 3.1's asset pipe_line
     location ~ ^/(assets)/  {
-      root /home/github/apps/github-friend/current/public;
+      root /home/github/apps/gitday/current/public;
       gzip_static on;
       expires max;
       add_header Cache-Control public;

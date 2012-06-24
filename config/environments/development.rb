@@ -1,4 +1,4 @@
-GithubFriend::Application.configure do
+Gitday::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -21,7 +21,7 @@ GithubFriend::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'github-friend.com',
+    :domain               => 'gitday.com',
     :user_name            => SecretSetting.smtp.username,
     :password             => SecretSetting.smtp.password,
     :authentication       => 'plain',

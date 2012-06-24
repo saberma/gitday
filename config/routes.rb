@@ -1,4 +1,4 @@
-GithubFriend::Application.routes.draw do
+Gitday::Application.routes.draw do
 
   devise_for :members, :controllers => { :omniauth_callbacks => "members/omniauth_callbacks" }
   devise_scope :member do

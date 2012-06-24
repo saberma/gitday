@@ -1,18 +1,17 @@
 !!!
 %html
   %head
-    %title Github Friend!
+    %title Gitday
     %link(href="#{image_path('favicon.ico')}" rel="icon" type="image/x-icon")
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
     = render 'shared/google'
-    %meta(content="F9BMzl7YsJFSQPJuzegBPCDl1qkHhWd8lzJZ6ukIWIg" name="google-site-verification")
   %body
     .navbar
       .navbar-inner
         .container
-          %a.brand(href="/") Github Friend
+          %a.brand(href="/") Gitday
           %ul.nav.pull-right
             -if member_signed_in?
               %li.dropdown

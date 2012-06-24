@@ -1,5 +1,5 @@
 class Subscriber < ActionMailer::Base
-  default css: :email, from: "Github Friend <admin@github-friend.com>"
+  default css: :email, from: "Gitday <admin@gitday.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -13,6 +13,6 @@ class Subscriber < ActionMailer::Base
     @followings = @day.followings
     @watchers = @day.watchers
     @followers = @day.followers
-    mail from: "Github Friend <admin@github-friend.com>", to: "#{member.login} <#{member.email}>", subject: "Day ##{@day.number}"
+    mail from: "Gitday <admin@gitday.com>", to: "#{member.login} <#{member.email}>", subject: "Day ##{@day.number}"
   end
 end

@@ -12,7 +12,7 @@ production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: github-friend-production
+  database: gitday_production
   pool: 5
   username: postgres
   password:

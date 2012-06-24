@@ -1,5 +1,5 @@
-Github Friend
-Make more friends, watch more repositories.
+Gitday
+organize your GITHUB NEWS FEED every day.
 
 ## Future
 

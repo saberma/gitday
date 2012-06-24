@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-GithubFriend::Application.load_tasks
+Gitday::Application.load_tasks

@@ -46,7 +46,7 @@ Spork.each_run do
 
   FactoryGirl.factories.clear
   Dir[Rails.root.join("spec/factories/**/*.rb")].each{|f| load f}
-  GithubFriend::Application.reload_routes!
+  Gitday::Application.reload_routes!
 
   # This code will be run each time you run your specs.
   RSpec.configure do |config|

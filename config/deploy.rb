@@ -5,17 +5,17 @@ require "whenever/capistrano"
 set :rvm_type, :user                                     # Copy the exact line. I really mean :user here
 set :rvm_ruby_string, 'ruby-1.9.3-p194'
 
-set :application, "github-friend"
+set :application, "gitday"
 
 set :port, ENV['CAP_PORT']
-role :web, "www.github-friend.com"                          # Your HTTP server, Apache/etc
-role :app, "www.github-friend.com"                          # This may be the same as your `Web` server
-role :db,  "www.github-friend.com", :primary => true # This is where Rails migrations will run
+role :web, "www.gitday.com"                          # Your HTTP server, Apache/etc
+role :app, "www.gitday.com"                          # This may be the same as your `Web` server
+role :db,  "www.gitday.com", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-set :repository,  "git://github.com/saberma/github-friend.git"
+set :repository,  "git://github.com/saberma/gitday.git"
 set :scm, :git
-set :deploy_to, "/home/github/apps/github-friend"
+set :deploy_to, "/home/github/apps/gitday"
 set :deploy_via, :remote_cache
 set :user, :github
 set :use_sudo, false
@@ -38,7 +38,7 @@ namespace :deploy do
     run "kill -s USR2 `cat #{pids_path}/unicorn.#{application}.pid`"
   end
 
-  # scp -P $CAP_PORT config/{database.yml,app_secret_config.yml,unicorn.conf.rb} github@www.github-friend.com:/home/github/apps/github-friend/shared/config/
+  # scp -P $CAP_PORT config/{database.yml,app_secret_config.yml,unicorn.conf.rb} github@www.gitday.com:/home/github/apps/gitday/shared/config/
   desc "Symlink shared resources on each release"
   task :symlink_shared, roles: :app do
     %w(database.yml app_secret_config.yml unicorn.conf.rb).each do |secure_file|
