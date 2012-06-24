@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
   has_many :days   , dependent: :destroy, order: 'id desc', extend: Day::Extension
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :token, :login
+  attr_accessible :email, :token, :login, :time_zone
 
   before_update do
     self.token.sub!("https://github.com/#{self.login}.private.atom?token=", '') if token_changed?

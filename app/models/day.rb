@@ -8,10 +8,6 @@ class Day < ActiveRecord::Base
 
   scope :in_a_week, limit: 7
 
-  def self.latest
-    where(["published_on < ?", Date.today]).first
-  end
-
   module Extension # http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html #Association extensions
 
     def member
@@ -19,12 +15,16 @@ class Day < ActiveRecord::Base
     end
 
     def get(published)
-      published = published.to_date
+      published = published.in_time_zone(member.time_zone).to_date
       unless day = find_by_published_on(published)
         number = member.days.size + 1
         day = self.create! :number => number, :published_on => published
       end
       day
+    end
+
+    def latest
+      where(["published_on < ?", Time.now.in_time_zone(member.time_zone).to_date]).first
     end
 
   end
