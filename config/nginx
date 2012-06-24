@@ -9,12 +9,17 @@ upstream gitday {
 }
 
 server {
+    server_name www.gitday.com;
+    rewrite ^(.*) http://gitday.com$1 permanent;
+}
+
+server {
     # if you're running multiple servers, instead of "default" you should
     # put your main domain name here
     listen 80;
 
     # you could put a list of other domain names this application answers
-    server_name www.gitday.com gitday.com;
+    server_name gitday.com;
 
     root /home/github/apps/gitday/current/public;
     access_log /var/log/nginx/gitday_access.log;
