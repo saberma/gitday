@@ -32,9 +32,12 @@ class Member < ActiveRecord::Base
 
   def self.send_daily
     Member.all.each do |member|
-      if member.subscribed and member.login == 'saberma' and (day = member.days.latest)
-        empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
-        Subscriber.day(member).deliver! unless empty
+      if Time.now.in_time_zone(member.time_zone).hour >= 7 # 07.00 am
+        if member.subscribed and member.login == 'saberma' and (day = member.days.latest) and !day.sended
+          day.update_attributes! sended: true
+          empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
+          Subscriber.day(member).deliver! unless empty
+        end
       end
     end
   rescue => e

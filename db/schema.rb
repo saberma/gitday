@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624025012) do
+ActiveRecord::Schema.define(:version => 20120624040946) do
 
   create_table "days", :force => true do |t|
-    t.integer "member_id",    :null => false
-    t.integer "number",       :null => false
+    t.integer "member_id",                       :null => false
+    t.integer "number",                          :null => false
     t.date    "published_on"
+    t.boolean "sended",       :default => false
   end
 
   create_table "entries", :force => true do |t|
