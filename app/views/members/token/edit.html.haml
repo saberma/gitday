@@ -2,14 +2,11 @@
   =f.label :token
   =f.text_field :token, :class => :span14
   %p.help-block
-    Use full token link:
-    %br
-    https://github.com/saberma.private.atom?token=8bf2milj9236b90b53mds80e5123dmlf
-  %p.help-block
-    Or just token:
-    %br
-    8bf2milj9236b90b53mds80e5123dmlf
-  %button.btn{:type => "submit"} 保存
+    %small https://github.com/saberma.private.atom?token=8bf2milj9236b90b53mds80e5123dmlf
+  =f.label :time_zone
+  =f.time_zone_select :time_zone, nil, :default => "Beijing"
+  %br
+  %button.btn.btn-primary(type="submit") 保存
   %p.help-block.token
     Find your News Feed token in
     =link_to 'github dashboard', 'https://github.com', target: :_blank
