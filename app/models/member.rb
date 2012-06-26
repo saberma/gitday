@@ -14,7 +14,7 @@ class Member < ActiveRecord::Base
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    if member = self.find_by_email(data.email)
+    if member = self.find_by_login(data.login)
       member
     else # Create a member with a stub password. 
       self.create!(:email => data.email, :login => data.login)
@@ -33,7 +33,7 @@ class Member < ActiveRecord::Base
   def self.send_daily
     Member.all.each do |member|
       if Time.now.in_time_zone(member.time_zone).hour >= 7 # 07.00 am
-        if !member.token.blank? and member.subscribed and (day = member.days.latest) and !day.sended
+        if !member.email.blank? and !member.token.blank? and member.subscribed and (day = member.days.latest) and !day.sended
           empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
           unless empty
             Subscriber.day(member).deliver!

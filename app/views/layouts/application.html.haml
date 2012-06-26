@@ -37,6 +37,7 @@
             -else
               %li=link_to 'Sign in with Github', member_omniauth_authorize_path(:github)
     #main.container
-      -unless flash[:notice].blank?
-        .alert.alert-info=flash[:notice]
+      -[:notice, :error, :alert].each do |type|
+        -unless flash[type].blank?
+          .alert{class: "alert-#{type}"}=flash[type]
       = yield

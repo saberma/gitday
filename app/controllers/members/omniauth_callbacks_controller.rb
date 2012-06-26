@@ -14,12 +14,9 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def self.new_with_session(params, session)
-    super.tap do |member|
-      if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
-        member.email = data["email"]
-      end
-    end
+  protected
+  def after_omniauth_failure_path_for resource
+    root_path
   end
 
 end
