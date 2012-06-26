@@ -33,7 +33,7 @@ class Member < ActiveRecord::Base
   def self.send_daily
     Member.all.each do |member|
       if Time.now.in_time_zone(member.time_zone).hour >= 7 # 07.00 am
-        if member.subscribed and member.login == 'saberma' and (day = member.days.latest) and !day.sended
+        if !member.token.blank? and member.subscribed and (day = member.days.latest) and !day.sended
           empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
           unless empty
             Subscriber.day(member).deliver!
