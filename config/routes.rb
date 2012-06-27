@@ -13,4 +13,5 @@ Gitday::Application.routes.draw do
   get '/member/unsubscribe', to: 'members/subscribe#update', :as => :member_unsubscribe
   get '/member/subscribe', to: 'members/subscribe#create', :as => :member_subscribe
 
+  get '/:number', to: 'home#day', number: /\d+/, :as => :day
 end
