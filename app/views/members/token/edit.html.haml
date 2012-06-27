@@ -4,7 +4,7 @@
       -current_member.errors.full_messages.each do |message|
         %li=message
 =form_for current_member, :url => member_token_path, :html => {:class => :well} do |f|
-  =f.label :token
+  =f.label :token, "Token <span class='label'>REQUIRED</span>".html_safe
   =f.text_field :token, :class => :span14
   %p.help-block
     %small https://github.com/saberma.private.atom?token=8bf2milj9236b90b53mds80e5123dmlf
