@@ -19,11 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-
-every 2.hours do
-  runner "Member.generate_daily_report"
-end
-
 every 1.hours do
   runner "Member.send_daily"
 end

@@ -52,10 +52,12 @@ namespace :daemons do
 
   task :start do
     run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:start"
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:parser:start"
   end
 
   task :stop do
     run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:stop"
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:parser:stop"
   end
 
   task :restart, roles: :app, except: { no_release: true } do
@@ -66,6 +68,7 @@ namespace :daemons do
   desc "Daemons status"
   task :status do
     run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:github:status"
+    run "cd #{current_path} ; RAILS_ENV=production bundle exec rake daemon:parser:status"
   end
 
 end
