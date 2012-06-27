@@ -7,9 +7,10 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :token, :login, :time_zone
+  validates :token, :time_zone, length: { maximum: 32 }
 
-  before_update do
-    self.token.sub!("https://github.com/#{self.login}.private.atom?token=", '') if token_changed?
+  before_validation do
+    self.token.sub!(/.*token=/, '') if token_changed?
   end
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
