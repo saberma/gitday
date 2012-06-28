@@ -4,10 +4,10 @@
       -current_member.errors.full_messages.each do |message|
         %li=message
 =form_for current_member, :url => member_token_path, :html => {:class => :well} do |f|
-  =f.label :token, "Token <span class='label'>REQUIRED</span>".html_safe
+  =f.label :token, "Token <span class='label label-important'>REQUIRED</span>".html_safe
   =f.text_field :token, :class => :span14
   %p.help-block
-    %small https://github.com/saberma.private.atom?token=8bf2milj9236b90b53mds80e5123dmlf
+    %small==https://github.com/foo.private.atom?token=#{Member::FAKE_TOKEN}
   =f.label :time_zone
   =f.time_zone_select :time_zone, nil, :default => "UTC"
   %br

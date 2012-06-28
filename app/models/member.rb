@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  FAKE_TOKEN = '8bf2milj9236b90b53mds80e5123dmlf'
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable, :recoverable, :validatable
@@ -11,7 +13,11 @@ class Member < ActiveRecord::Base
   validates_presence_of :token, on: :update
 
   before_validation do
-    self.token.sub!(/.*token=/, '') if token_changed?
+    self.token.sub!(/.*token=/, '').strip! if token_changed?
+  end
+
+  def token_valid?
+    !self.token.blank? and self.token != Member::FAKE_TOKEN
   end
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
@@ -35,7 +41,7 @@ class Member < ActiveRecord::Base
   def self.send_daily
     Member.all.each do |member|
       if Time.now.in_time_zone(member.time_zone).hour >= 7 # 07.00 am
-        if !member.email.blank? and !member.token.blank? and member.subscribed and (day = member.days.latest) and !day.sended
+        if !member.email.blank? and member.token_valid? and member.subscribed and (day = member.days.latest) and !day.sended
           empty = [day.watchings, day.followings, day.watchers, day.followers].map(&:empty?).all?
           unless empty
             Subscriber.day(member).deliver!
@@ -51,12 +57,8 @@ class Member < ActiveRecord::Base
 
   def self.get_news_feed
     Member.all.each do |member|
-      name = member.login
-      token = member.token
-      unless token.blank?
-        url = "https://github.com/#{name}.private.atom?token=#{token}"
-
-        key = "github_#{name}"
+      if member.token_valid?
+        url = "https://github.com/#{member.login}.private.atom?token=#{member.token}"
         feed = Feedzirra::Feed.fetch_and_parse(url)
         unless feed.is_a?(Integer) # 发生错误时feed为错误码
           if feed.etag != member.etag

@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     if current_member
       if current_member.token.blank?
         redirect_to member_token_path, notice: "Please provide your Github News Feed token!"
+      elsif current_member.token == Member::FAKE_TOKEN
+        redirect_to member_token_path, notice: "#{Member::FAKE_TOKEN} is an example token, DO NOT use it!"
       else
         day
       end
