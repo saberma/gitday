@@ -13,7 +13,7 @@ class Subscriber < ActionMailer::Base
     @followings = @day.followings
     @watchers = @day.watchers
     @followers = @day.followers
-    mail from: "Gitday <admin@gitday.com>", to: "#{member.login} <#{member.email}>", subject: "Day ##{@day.number}"
+    mail from: "Gitday <admin@gitday.com>", to: "#{member.login} <#{member.email}>", subject: @day.title
   rescue Timeout::Error
     puts "connect error: #{entry.short_id}"
   end

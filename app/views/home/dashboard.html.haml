@@ -3,7 +3,7 @@
     -unless @day.new_record?
       .day
         %h1.title
-          ==Day #{@day.number}
+          =@day.title
           %small=@day.published_on.to_s(:db)
 
         -unless @followers.empty?

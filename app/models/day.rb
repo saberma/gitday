@@ -31,6 +31,10 @@ class Day < ActiveRecord::Base
 
   end
 
+  def title
+    self.published_on.today? ? 'Today' : "Day #{self.number}"
+  end
+
   def generate
     self.entries.ungenerated.each do |entry|
       begin

@@ -10,7 +10,7 @@
       if you can't see the images.
     .day
       %h1.title
-        ==Day #{@day.number}
+        =@day.title
         %small=@day.published_on.to_s(:db)
 
       -unless @followers.empty?
