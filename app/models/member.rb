@@ -9,11 +9,12 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :token, :login, :time_zone
-  validates :token, :time_zone, length: { maximum: 32 }
+  validates_length_of :time_zone, maximum: 32
+  validates_length_of :token, :within => 32..32
   validates_presence_of :token, on: :update
 
   before_validation do
-    self.token.sub!(/.*token=/, '').strip! if token_changed?
+    self.token.sub!(/.*token=/, '') if token_changed?
   end
 
   def token_valid?
