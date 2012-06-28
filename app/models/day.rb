@@ -57,7 +57,7 @@ class Day < ActiveRecord::Base
           end
           entry.generated!
         end
-      rescue Errno::ETIMEDOUT, Faraday::Error::ConnectionFailed
+      rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed
         puts "connect error: #{entry.short_id}"
       end
     end
