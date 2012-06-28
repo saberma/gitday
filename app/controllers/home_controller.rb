@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     if current_member
       if current_member.token.blank?
-        redirect_to member_token_path
+        redirect_to member_token_path, notice: "Please provide your Github News Feed token!"
       else
         day
       end
