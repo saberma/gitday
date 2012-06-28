@@ -41,3 +41,6 @@
         -unless flash[type].blank?
           .alert{class: "alert-#{type}"}=flash[type]
       = yield
+    #footer
+      %ul
+        %li=link_to 'Contact Us', "mailto: #{SecretSetting.author.email}?subject=Gitday"

@@ -9,7 +9,7 @@ FactoryGirl.define do
 
   factory :member_camelsong, parent: :member do
     email 'camelsong@example.com'
-    token 'camelsong'
+    token Member::FAKE_TOKEN
     login 'camelsong'
   end
 end
