@@ -4,7 +4,7 @@
       .day
         %h1.title
           =@day.title
-          %small=@day.published_on.to_s(:db)
+          %small(title="#{@day.published_on.to_s(:db)}")=@day.today? ? 'Today' : @day.published_on.to_s(:db)
 
         -unless @followers.empty?
           .follower

@@ -31,8 +31,12 @@ class Day < ActiveRecord::Base
 
   end
 
+  def today?
+    Time.now.in_time_zone(member.time_zone).to_date == self.published_on
+  end
+
   def title
-    self.published_on.today? ? 'Today' : "Day #{self.number}"
+    "Day #{self.number}"
   end
 
   def generate
