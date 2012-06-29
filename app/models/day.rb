@@ -61,7 +61,7 @@ class Day < ActiveRecord::Base
           end
           entry.generated!
         end
-      rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed, Faraday::Error::ParsingError
+      rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed, Faraday::Error::ParsingError, Octokit::InternalServerError
         puts "connect error: #{entry.short_id}"
       end
     end
