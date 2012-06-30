@@ -14,7 +14,7 @@ i = 0
 while($running) do
   i += 1
   Rails.logger.auto_flushing = true
-  Rails.logger.info "Member.get_news_feed:#{i}"
+  Rails.logger.info "[#{Time.now.to_s(:db)}] Member.get_news_feed:#{i}"
   Member.get_news_feed
 
   #Rails.logger.info "This daemon is still running at #{Time.now}.\n"
