@@ -40,9 +40,10 @@ class Day < ActiveRecord::Base
   end
 
   def generate
+    logger.info "Day: #{self.number}"
     self.entries.ungenerated.each do |entry|
       begin
-        puts "generate:#{entry.short_id}"
+        logger.info "Entry: #{entry.short_id}"
         Day.transaction do
           author = User.get(entry.author)
           if entry.all_watch_event?
@@ -66,7 +67,7 @@ class Day < ActiveRecord::Base
           entry.generated!
         end
       rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed, Faraday::Error::ParsingError, Octokit::InternalServerError
-        puts "connect error: #{entry.short_id}"
+        logger.info "Connect Error: #{entry.short_id}"
       end
     end
   end
