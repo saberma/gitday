@@ -48,13 +48,14 @@ class Day < ActiveRecord::Base
           author = User.get(entry.author)
           if entry.all_watch_event?
             repo = Repository.get(entry.watching_repository)
-            next unless repo # repo was destroyed
-            if repo.user.login == self.member.login # your repo?
-              watcher = self.watchers.on entry.watching_repository
-              watcher.authors.add author
-            else
-              watching = self.watchings.on entry.watching_repository
-              watching.authors.add author
+            if repo # repo was destroyed
+              if repo.user.login == self.member.login # your repo?
+                watcher = self.watchers.on entry.watching_repository
+                watcher.authors.add author
+              else
+                watching = self.watchings.on entry.watching_repository
+                watching.authors.add author
+              end
             end
           elsif entry.all_follow_event?
             if entry.following_user == self.member.login
