@@ -64,7 +64,7 @@ class Member < ActiveRecord::Base
       logger.info "== Start #{member.login} Feed =="
       if member.token_valid?
         url = "https://github.com/#{member.login}.private.atom?token=#{member.token}"
-        feed = Feedzirra::Feed.fetch_and_parse(url)
+        feed = Feedzirra::Feed.fetch_and_parse(url, max_redirects: 3, timeout: 30) # fixed feedzirra hangs
         logger.info "Getting Feed..."
         unless feed.is_a?(Integer) # 发生错误时feed为错误码
           logger.info "Feed is ok."
