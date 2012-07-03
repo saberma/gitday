@@ -48,34 +48,38 @@ describe Entry do
 
   end
 
-  context 'two members follow a same guy', f: true do
+  context 'FollowEvent' do
 
-    let(:member) { Factory(:member) }
+    context 'two members follow a same guy' do
 
-    let(:member_camelsong) { Factory(:member_camelsong) }
+      let(:member) { Factory(:member) }
 
-    let(:file) { "short_id_unique_1.xml" }
+      let(:member_camelsong) { Factory(:member_camelsong) }
 
-    before do
-      Feedzirra::Feed.stub!(:fetch_and_parse).and_return(feed)
-      member
-      Member.get_news_feed
-    end
-
-    context 'short_id is the same' do
-
-      let(:file) { "short_id_unique_2.xml" }
+      let(:file) { "short_id_unique_1.xml" }
 
       before do
-        feed = parse file
         Feedzirra::Feed.stub!(:fetch_and_parse).and_return(feed)
-        member_camelsong
+        member
+        Member.get_news_feed
       end
 
-      it 'should be save' do
-        expect do
-          Member.get_news_feed
-        end.should_not raise_error
+      context 'short_id is the same' do
+
+        let(:file) { "short_id_unique_2.xml" }
+
+        before do
+          feed = parse file
+          Feedzirra::Feed.stub!(:fetch_and_parse).and_return(feed)
+          member_camelsong
+        end
+
+        it 'should be save' do
+          expect do
+            Member.get_news_feed
+          end.should_not raise_error
+        end
+
       end
 
     end
