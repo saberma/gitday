@@ -48,6 +48,15 @@ describe Entry do
 
   end
 
+  context 'CommentEvent' do
+
+    let(:file) { "comment_event.xml" }
+
+    it 'should be parse' do
+      entry.link.should eql 'blueimp/jQuery-File-Upload/issues/1223#issuecomment-6733474'
+    end
+  end
+
   context 'FollowEvent' do
 
     context 'two members follow a same guy' do

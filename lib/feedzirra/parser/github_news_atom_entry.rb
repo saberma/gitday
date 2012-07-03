@@ -6,7 +6,7 @@ module Feedzirra
       TAG_REGEXP = Regexp.new("#{Feedzirra::Parser::GithubNewsAtom::TAG_PREFIX}:(\\w+)\\/(\\d+)")
       # IssueCommentEvent IssuesEvent PullRequestEvent PushEvent
       # http://developer.github.com/v3/events/types
-      EVENT = %w(CreateEvent FollowEvent MemberEvent WatchEvent ForkEvent)
+      EVENT = %w(CreateEvent FollowEvent IssueCommentEvent MemberEvent WatchEvent ForkEvent)
       
       element :id, :as => :entry_id # tag:github.com,2008:GollumEvent/1549035188
       element :published
@@ -51,6 +51,10 @@ module Feedzirra
 
         def fork_event?
           event == 'ForkEvent'
+        end
+
+        def comment_event?
+          event == 'IssueCommentEvent'
         end
 
         def create_tag_event?
