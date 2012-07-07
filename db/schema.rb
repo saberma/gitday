@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626124925) do
+ActiveRecord::Schema.define(:version => 20120703141404) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "repository_id"
+    t.integer  "author_id"
+    t.string   "event",         :limit => 32
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "days", :force => true do |t|
     t.integer "member_id",                       :null => false
@@ -76,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20120626124925) do
   create_table "repositories", :force => true do |t|
     t.integer  "user_id",                    :null => false
     t.string   "fullname",    :limit => 128, :null => false
-    t.text     "description"
+    t.text     "description", :limit => 512
     t.string   "homepage"
     t.string   "language",    :limit => 16
     t.integer  "watchers"

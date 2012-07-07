@@ -1,6 +1,7 @@
 class Entry < ActiveRecord::Base
   belongs_to :day
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
+  ACTIVITY_EVENT = %w(IssueCommentEvent)
 
   attr_accessible :short_id, :link, :author, :generated, :published_at
   scope :ungenerated, where(:generated => false)
@@ -25,6 +26,14 @@ class Entry < ActiveRecord::Base
     link.strip if all_watch_event?
   end
 
+  def activity_repository
+    link.sub(/\/issues.+/, '') if all_activity_event?
+  end
+
+  def comment_id
+    link.sub(/.+issuecomment-/, '').to_i
+  end
+
   begin 'events'
 
     def follow_event?
@@ -41,6 +50,10 @@ class Entry < ActiveRecord::Base
 
     def all_watch_event?
       WATCH_EVENT.include? event
+    end
+
+    def all_activity_event?
+      ACTIVITY_EVENT.include? event
     end
 
   end

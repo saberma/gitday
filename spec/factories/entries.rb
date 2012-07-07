@@ -2,7 +2,6 @@
 FactoryGirl.define do
 
   factory :entry do
-    association :day, factory: :day
   end
 
   begin 'shopqi'
@@ -37,6 +36,17 @@ FactoryGirl.define do
       link "camelsong/AjaxCRUD"
       author "ichord"
       published_at '2012-05-21 11:20:30'
+    end
+
+  end
+
+  begin 'jQuery-File-Upload'
+
+    factory :comment_on_jquery_file_upload_entry, parent: :entry do
+      short_id "IssueCommentEvent/1569204837"
+      link "blueimp/jQuery-File-Upload/issues/1223#issuecomment-6733474"
+      author "vuongnguyen"
+      published_at '2012-07-03 11:20:30'
     end
 
   end
