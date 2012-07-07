@@ -13,14 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20120703141404) do
 
+  create_table "active_repositories", :force => true do |t|
+    t.integer "day_id"
+    t.integer "repository_id"
+  end
+
   create_table "activities", :force => true do |t|
-    t.integer  "day_id"
-    t.integer  "repository_id"
+    t.integer  "active_repository_id"
     t.integer  "author_id"
-    t.string   "event",         :limit => 32
+    t.string   "event",                :limit => 32
     t.datetime "published_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "days", :force => true do |t|
@@ -86,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20120703141404) do
   create_table "repositories", :force => true do |t|
     t.integer  "user_id",                    :null => false
     t.string   "fullname",    :limit => 128, :null => false
-    t.text     "description", :limit => 512
+    t.text     "description"
     t.string   "homepage"
     t.string   "language",    :limit => 16
     t.integer  "watchers"

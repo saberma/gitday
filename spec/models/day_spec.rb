@@ -22,7 +22,9 @@ describe Day do
 
           it 'should be success' do
             expect do
-              day.generate
+              expect do
+                day.generate
+              end.should change(ActiveRepository, :count).by(1)
             end.should change(Activity, :count).by(1)
           end
 

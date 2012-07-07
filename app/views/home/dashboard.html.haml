@@ -6,6 +6,21 @@
           =@day.title
           %small(title="#{@day.published_on.to_s(:db)}")=@day.today? ? 'Today' : @day.published_on.to_s(:db)
 
+        -@active_repositories.each do |active_repo|
+          .watcher
+            .page-header
+              %h6
+                %small=active_repo.repository.fullname
+                ACTIVITIES:
+          %ul.unstyled
+            -active_repo.activities.each do |activity|
+              -user = activity.author
+              %li
+                =link_to user.uri do
+                  =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
+                %span=user.login
+                %span=activity.event
+
         -unless @followers.empty?
           .follower
             .page-header

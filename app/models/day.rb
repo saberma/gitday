@@ -1,14 +1,14 @@
 class Day < ActiveRecord::Base
   belongs_to :member
-  has_many :entries   , dependent: :destroy, order: 'id desc'
-  # YOUR WATCHING REPO ACTIVITIES
-  has_many :activities, dependent: :destroy, order: 'id desc', extend: Activity::Extension
+  has_many :entries              , dependent: :destroy, order: 'id desc'
+  # YOUR WATCHING ACTIVE REPOSITORIES
+  has_many :active_repositories  , dependent: :destroy, order: 'id desc', extend: ActiveRepository::Extension
   # YOUR FRIENDS ACTIVITIES
-  has_many :followings, dependent: :destroy, order: 'id desc', extend: Following::Extension
-  has_many :watchings , dependent: :destroy, order: 'id desc', extend: Watching::Extension
+  has_many :followings           , dependent: :destroy, order: 'id desc', extend: Following::Extension
+  has_many :watchings            , dependent: :destroy, order: 'id desc', extend: Watching::Extension
   # YOUR OR YOUR REPO WATCHERS
-  has_many :watchers  , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
-  has_many :followers , dependent: :destroy, order: 'id desc', extend: Follower::Extension
+  has_many :watchers             , dependent: :destroy, order: 'id desc', extend: Watcher::Extension
+  has_many :followers            , dependent: :destroy, order: 'id desc', extend: Follower::Extension
 
   attr_accessible :number, :published_on, :sended
 
@@ -69,7 +69,7 @@ class Day < ActiveRecord::Base
               following.authors.add author
             end
           elsif entry.all_activity_event? # issue, comment event
-            self.activities.add entry.activity_repository, author, entry.event, entry.published_at
+            self.active_repositories.add entry.activity_repository, author, entry.event, entry.published_at
           end
           entry.generated!
         end
