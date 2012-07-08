@@ -26,7 +26,9 @@
                       .gravatar
                         =link_to user.uri do
                           =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
-                      .message(title="#{activity.body}")=truncate activity.body, length: 190, separator: ' '
+                      .message
+                        %blockquote(title="#{activity.body}")
+                          %p=raw markdown.render(truncate(activity.body, length: 190))
 
         -unless @followers.empty?
           .follower

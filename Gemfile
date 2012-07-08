@@ -30,6 +30,7 @@ gem 'whenever', :require => false
 gem 'exception_notification'
 gem 'letter_opener'
 gem 'roadie'
+gem 'redcarpet'
 
 group :production do
   gem 'pg'
