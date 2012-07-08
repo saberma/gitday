@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20120707134201) do
   create_table "active_repositories", :force => true do |t|
     t.integer "day_id"
     t.integer "repository_id"
+    t.integer "activities_count", :default => 0
   end
 
   create_table "activities", :force => true do |t|

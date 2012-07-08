@@ -10,8 +10,8 @@
           -unless active_repo.activities.empty?
             .active_repository
               .page-header
-                %h6
-                  %small=link_to active_repo.repository.fullname, active_repo.repository.uri
+                %h4
+                  =link_to active_repo.repository.fullname, active_repo.repository.uri
                   ACTIVITIES:
               %ul.unstyled
                 -active_repo.activities.each do |activity|
@@ -28,7 +28,7 @@
                           =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
                       .message
                         %blockquote(title="#{activity.body}")
-                          %p=raw markdown.render(truncate(activity.body, length: 190))
+                          %p=raw markdown.render(truncate(activity.body, length: 170))
 
         -unless @followers.empty?
           .follower

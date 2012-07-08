@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  belongs_to :active_repository
+  belongs_to :active_repository, counter_cache: true
   belongs_to :author, class_name: 'User'
   attr_accessible :author, :event, :event_id, :published_at
 
