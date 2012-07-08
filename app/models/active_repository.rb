@@ -1,7 +1,7 @@
 class ActiveRepository < ActiveRecord::Base
   belongs_to :day
   belongs_to :repository
-  has_many :activities  , dependent: :destroy, order: 'id desc'
+  has_many :activities  , dependent: :destroy, order: 'published_at desc'
   attr_accessible :repository_id
 
   module Extension

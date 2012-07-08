@@ -8,22 +8,25 @@
 
         -@active_repositories.each do |active_repo|
           -unless active_repo.activities.empty?
-            .watcher
+            .active_repository
               .page-header
                 %h6
-                  %small=active_repo.repository.fullname
+                  %small=link_to active_repo.repository.fullname, active_repo.repository.uri
                   ACTIVITIES:
-            %ul.unstyled
-              -active_repo.activities.each do |activity|
-                -user = activity.author
-                %li
-                  %span=link_to user.login, user.uri
-                  %span=activity.action
-                  %span=link_to activity.name, activity.link, title: activity.title
-                  %br/
-                  =link_to user.uri do
-                    =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
-                  %span=activity.body
+              %ul.unstyled
+                -active_repo.activities.each do |activity|
+                  -user = activity.author
+                  %li
+                    .title
+                      =link_to user.login, user.uri
+                      %span=activity.action
+                      =link_to activity.name, activity.link, title: activity.title
+                      %span.timeago(title="#{activity.published_at.iso8601}")=activity.published_at.to_s(:db)
+                    .details
+                      .gravatar
+                        =link_to user.uri do
+                          =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
+                      .message(title="#{activity.body}")=truncate activity.body, length: 190, separator: ' '
 
         -unless @followers.empty?
           .follower

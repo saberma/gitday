@@ -104,7 +104,31 @@ body {
 .day {
   .page-header {
     padding-bottom: 5px;
-    margin: 25px 10px 0 0; }
+    margin: 25px 10px 0 0;
+    h6 a{
+      text-transform: none; } }
+  .active_repository {
+    ul {
+      margin-right: 10px;
+      li {
+        border-bottom: 1px solid #eee;
+        overflow: hidden;
+        padding: 0 0 1em 0;
+        clear: both; } }
+    .title {
+      font-weight: bold;
+      padding: 0.25em 0; }
+    .details {
+      clear: both;
+      .gravatar {
+        border: 1px solid #D0D0D0;
+        padding: 2px;
+        margin-right: 0.7em;
+        float: left; }
+      .message {
+        display: inline;
+        } }
+  }
   .content {
     padding: 10px 0;
     border-bottom: #E2E2E2 dashed 1px;
