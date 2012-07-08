@@ -1,5 +1,6 @@
 class Repository < ActiveRecord::Base
   belongs_to :user
+  has_many :issues, extend: Issue::Extension
   attr_accessible :user, :fullname, :description, :homepage, :language, :watchers
 
   scope :preview, limit: 2

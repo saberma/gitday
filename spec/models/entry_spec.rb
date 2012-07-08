@@ -7,7 +7,11 @@ describe Entry do
     let(:entry) { Factory(:comment_on_jquery_file_upload_entry) }
 
     it 'should get repo' do
-      entry.activity_repository.should eql 'blueimp/jQuery-File-Upload'
+      entry.active_repository.should eql 'blueimp/jQuery-File-Upload'
+    end
+
+    it 'should get the issue id' do
+      entry.issue_number.should eql 1223
     end
 
     it 'should get the id' do

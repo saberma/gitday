@@ -2,7 +2,7 @@ class ActiveRepository < ActiveRecord::Base
   belongs_to :day
   belongs_to :repository
   has_many :activities  , dependent: :destroy, order: 'id desc'
-  attr_accessible :repository
+  attr_accessible :repository_id
 
   module Extension
 
@@ -10,11 +10,14 @@ class ActiveRepository < ActiveRecord::Base
       @association.owner
     end
 
-    def add(repo_fullname, user, event, published_at)
-      repo = Repository.get(repo_fullname)
+    def add(entry)
+      user = User.get(entry.author)
+      repo = Repository.get(entry.active_repository)
+      issue = repo.issues.get(entry.issue_number)
+      issue.comments.get(entry.comment_id)
       active_repo = find_by_repository_id(repo.id)
-      active_repo ||= day.active_repositories.create(repository: repo)
-      active_repo.activities.create author: user, event: event, published_at: published_at
+      active_repo ||= day.active_repositories.create(repository_id: repo.id)
+      active_repo.activities.create author: user, event: entry.event, event_id: entry.comment_id, published_at: entry.published_at
     end
 
   end

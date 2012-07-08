@@ -26,12 +26,20 @@ class Entry < ActiveRecord::Base
     link.strip if all_watch_event?
   end
 
-  def activity_repository
-    link.sub(/\/issues.+/, '') if all_activity_event?
-  end
+  begin 'issue comment'
 
-  def comment_id
-    link.sub(/.+issuecomment-/, '').to_i
+    def active_repository
+      link.sub(/\/issues.+/, '') if all_activity_event?
+    end
+
+    def issue_number
+      link.match(/.+issues\/(\d+)#issuecomment.+/)[1].to_i
+    end
+
+    def comment_id
+      link.sub(/.+issuecomment-/, '').to_i
+    end
+
   end
 
   begin 'events'

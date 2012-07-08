@@ -69,7 +69,7 @@ class Day < ActiveRecord::Base
               following.authors.add author
             end
           elsif entry.all_activity_event? # issue, comment event
-            self.active_repositories.add entry.activity_repository, author, entry.event, entry.published_at
+            self.active_repositories.add entry
           end
           entry.generated!
         end
