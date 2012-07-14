@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Following do
 
+  let(:member) { Factory(:member) }
+
   let(:camelsong) { Factory(:camelsong) }
 
   let(:ichord) { Factory(:ichord) }
 
-  let(:day) { Factory(:day) }
+  let(:day) { Factory(:day, member: member) }
 
   let(:following_camelsong_entry) { Factory(:following_camelsong_entry, day: day) }
 
   let(:following_camelsong_again_entry) { Factory(:following_camelsong_again_entry, day: day) }
-
-  let(:member) { day.member }
 
   context 'somebody follow camelsong' do
 

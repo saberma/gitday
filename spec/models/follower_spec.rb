@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe Follower do
 
+  let(:member) { Factory(:member) }
+
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day) }
+  let(:day) { Factory(:day, member: member) }
 
   let(:following_saberma_entry) { Factory(:following_saberma_entry, day: day) }
 
   let(:following_saberma_again_entry) { Factory(:following_saberma_again_entry, day: day) }
-
-  let(:member) { day.member }
 
   context 'somebody follow saberma' do
 

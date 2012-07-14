@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe WatchingAuthor do
 
+  let(:member) { Factory(:member) }
+
   let(:ajax_crud) { Factory(:ajax_crud) }
 
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day) }
+  let(:day) { Factory(:day, member: member) }
 
   let(:watching_ajax_crud_entry) { Factory(:watching_ajax_crud_entry, day: day) }
 
   let(:forked_ajax_crud_entry) { Factory(:forked_ajax_crud_entry, day: day) }
-
-  let(:member) { day.member }
 
   context 'somebody watched AjaxCRUD' do
 

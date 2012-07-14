@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe WatcherAuthor do
 
+  let(:member) { Factory(:member) }
+
   let(:shopqi) { Factory(:shopqi) }
 
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day) }
+  let(:day) { Factory(:day, member: member) }
 
   let(:watching_shopqi_entry) { Factory(:watching_shopqi_entry, day: day) }
 
   let(:forked_shopqi_entry) { Factory(:forked_shopqi_entry, day: day) }
-
-  let(:member) { day.member }
 
   context 'somebody watched shopqi' do
 
