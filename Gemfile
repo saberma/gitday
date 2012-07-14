@@ -18,7 +18,7 @@ end
 gem 'jquery-rails'
 gem 'feedzirra', '0.2.0.rc2'
 gem 'redis'
-gem 'haml'
+gem 'haml', "~> 3.1.6"
 gem 'devise'
 gem 'omniauth-github'
 gem 'settingslogic'
