@@ -1,8 +1,8 @@
 class Activity < ActiveRecord::Base
   belongs_to :active_repository, counter_cache: true
   belongs_to :author, class_name: 'User'
-  attr_accessible :author, :event, :comment_id, :published_at
-  store :settings, accessors: [ :comment_id, :branch_id ]
+  store :settings, accessors: [ :comment_id, :ref ] # IssueComment: comment_id. Push: ref
+  attr_accessible :author, :event, :published_at, :comment_id
 
   def action # commented on
     case event

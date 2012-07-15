@@ -73,20 +73,7 @@ class Member < ActiveRecord::Base
             Member.transaction do
               feed.entries.reverse_each do |entry|
                 day = member.days.get entry.published
-                unless day.entries.exists?(short_id: entry.short_id)
-                  logger.info "Set: #{entry.title}"
-                  day.entries.create({
-                    :short_id => entry.short_id,
-                    :published_at => entry.published,
-                    :link => entry.link,
-                    #:title => entry.title,
-                    :author => entry.author.name,
-                    #:author_email => author.email,
-                    #:author_uri => author.uri,
-                    #:content => entry.content,
-                    #:thumbnail => entry.thumbnail
-                  })
-                end
+                day.entries.add(entry)
               end
               member.etag = feed.etag
               member.save

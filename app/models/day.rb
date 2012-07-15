@@ -1,6 +1,6 @@
 class Day < ActiveRecord::Base
   belongs_to :member
-  has_many :entries                  , dependent: :destroy, order: 'id desc'
+  has_many :entries                  , dependent: :destroy, order: 'id desc'              , extend: Entry::Extension
   # YOUR WATCHING ACTIVE REPOSITORIES
   has_many :active_repositories      , dependent: :destroy, order: 'activities_count desc', extend: ActiveRepository::Extension
   # YOUR FRIENDS ACTIVITIES

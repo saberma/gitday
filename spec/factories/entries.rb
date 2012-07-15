@@ -69,6 +69,17 @@ FactoryGirl.define do
 
   end
 
+  begin 'elasticsearch/elasticsearch'
+
+    factory :pushed_to_elasticsearch, parent: :entry do
+      short_id "PushEvent/1573393297"
+      link "elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f"
+      author "kimchy"
+      published_at '2012-07-14 11:19:16'
+    end
+
+  end
+
   begin 'saberma'
 
     factory :following_saberma_entry, parent: :entry do

@@ -4,7 +4,7 @@ class CreateActivities < ActiveRecord::Migration
       t.belongs_to :active_repository
       t.belongs_to :author
       t.string :event, limit: 32
-      t.text :settings # IssueComment: comment_id. Push: branch_id
+      t.text :settings
       t.datetime :published_at
     end
   end
