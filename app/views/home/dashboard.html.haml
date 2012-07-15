@@ -15,20 +15,7 @@
                   ACTIVITIES:
               %ul.unstyled
                 -active_repo.activities.each do |activity|
-                  -user = activity.author
-                  %li
-                    .title
-                      =link_to user.login, user.uri
-                      %span=activity.action
-                      =link_to activity.name, activity.link, title: activity.title
-                      %span.timeago(title="#{activity.published_at.iso8601}")=activity.published_at.to_s(:db)
-                    .details
-                      .gravatar
-                        =link_to user.uri do
-                          =image_tag user.avatar_url, style: 'width: 30px; height: 30px;'
-                      .message
-                        %blockquote(title="#{activity.body}")
-                          %p=raw markdown.render(truncate(activity.body, length: 170))
+                  =render partial: "activities/#{activity.event.underscore}", locals: { activity: activity }
 
         -unless @followers.empty?
           .follower

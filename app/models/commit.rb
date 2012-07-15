@@ -25,4 +25,8 @@ class Commit < ActiveRecord::Base
     end
 
   end
+
+  def uri
+    "https://github.com/#{repository.fullname}/commit/#{self.sha}"
+  end
 end

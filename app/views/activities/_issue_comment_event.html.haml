@@ -1,0 +1,13 @@
+%li
+  .title
+    =link_to activity.author.login, activity.author.uri
+    %span commented on
+    =link_to "issue #{activity.issue.number}", "https://github.com/#{activity.issue.repository.fullname}/issues/#{activity.issue.number}#issuecomment-#{activity.comment.comment_id}", title: activity.issue.title
+    %span.timeago(title="#{activity.published_at.iso8601}")=activity.published_at.to_s(:db)
+  .details
+    .gravatar
+      =link_to activity.author.uri do
+        =image_tag activity.author.avatar_url, style: 'width: 30px; height: 30px;'
+    .message
+      %blockquote(title="#{activity.comment.body}")
+        %p=raw markdown.render(truncate(activity.comment.body, length: 170))
