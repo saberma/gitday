@@ -4,7 +4,11 @@ describe Entry do
 
   context 'comment' do
 
-    let(:entry) { Factory(:comment_on_jquery_file_upload_entry) }
+    let(:member) { Factory(:member) }
+
+    let(:day) { Factory(:day, member: member) }
+
+    let(:entry) { Factory(:comment_on_jquery_file_upload_entry, day: day) }
 
     it 'should get repo' do
       entry.active_repository.should eql 'blueimp/jQuery-File-Upload'

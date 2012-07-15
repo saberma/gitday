@@ -51,6 +51,24 @@ FactoryGirl.define do
 
   end
 
+  begin 'zurb/foundation'
+
+    factory :comment_on_zurb_foundation, parent: :entry do
+      short_id "IssueCommentEvent/1573406489"
+      link "zurb/foundation/issues/638#issuecomment-6982924"
+      author "Anderson-Juhasc"
+      published_at '2012-07-14 13:29:12'
+    end
+
+    factory :comment_on_zurb_foundation_1, parent: :entry do
+      short_id "IssueCommentEvent/1573406182"
+      link "zurb/foundation/issues/638#issuecomment-6982900"
+      author "Anderson-Juhasc"
+      published_at '2012-07-14 13:26:29'
+    end
+
+  end
+
   begin 'saberma'
 
     factory :following_saberma_entry, parent: :entry do

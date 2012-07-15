@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     self.company = self.company[0, 64] if company and company.size > 64
   end
 
-  def self.get(login)
+  def self.get(login, options = {})
+    options.reverse_merge! with_repositories: true
     user = self.find_by_login(login)
     unless user
       json = Octokit.user(login)
@@ -22,9 +23,11 @@ class User < ActiveRecord::Base
         :avatar_url => json['avatar_url'],
         :gravatar_id => json['gravatar_id']
       })
-      repos = Octokit.repos(login, per_page: 100)
-      repos.reject(&:fork).each do |json|
-        Repository.get "#{login}/#{json['name']}", json, user
+      if options[:with_repositories]
+        repos = Octokit.repos(login, per_page: 100)
+        repos.reject(&:fork).each do |json|
+          Repository.get "#{login}/#{json['name']}", json, user
+        end
       end
     end
     user

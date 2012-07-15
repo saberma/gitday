@@ -10,9 +10,10 @@ class Repository < ActiveRecord::Base
     repo = self.find_by_fullname(fullname)
     unless repo
       json ||= Octokit.repo(fullname)
+      user ||= User.get(json['owner']['login'], with_repositories: false)
       repo = self.create({
         :fullname => fullname,
-        :user => (user || User.get(json['owner']['login'])),
+        :user => user,
         :description => json['description'],
         :homepage => json['homepage'],
         :language => json['language'],
