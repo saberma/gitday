@@ -32,10 +32,7 @@ class Member < ActiveRecord::Base
 
   def self.generate_daily_report
     Member.all.each do |member|
-      logger.info "== Start Report #{member.login} =="
       member.days.in_a_week.each(&:generate)
-      logger.info "== End   Report #{member.login} =="
-      logger.info ""
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
@@ -61,15 +58,11 @@ class Member < ActiveRecord::Base
 
   def self.get_news_feed
     Member.all.each do |member|
-      logger.info "== Start #{member.login} Feed =="
       if member.token_valid?
         url = "https://github.com/#{member.login}.private.atom?token=#{member.token}"
         feed = Feedzirra::Feed.fetch_and_parse(url, max_redirects: 3, timeout: 30) # fixed feedzirra hangs
-        logger.info "Getting Feed..."
         unless feed.is_a?(Integer) # 发生错误时feed为错误码
-          logger.info "Feed is ok."
           if feed.etag != member.etag
-            logger.info "Etag is different."
             Member.transaction do
               feed.entries.reverse_each do |entry|
                 day = member.days.get entry.published
@@ -78,17 +71,9 @@ class Member < ActiveRecord::Base
               member.etag = feed.etag
               member.save
             end
-          else
-            logger.info "Etag is the same."
           end
-        else
-          logger.info "Feed is wrong."
         end
-      else
-        logger.info "Token #{member.token} is invalid."
       end
-      logger.info "== End   #{member.login} Feed =="
-      logger.info ""
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
