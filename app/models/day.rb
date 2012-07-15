@@ -45,37 +45,6 @@ class Day < ActiveRecord::Base
 
   def generate
     logger.info "Day: #{self.number}"
-    self.entries.ungenerated.each do |entry|
-      begin
-        logger.info "Entry: #{entry.short_id}"
-        Day.transaction do
-          author = User.get(entry.author)
-          if entry.all_watch_event?
-            repo = Repository.get(entry.watching_repository)
-            if repo # repo was destroyed
-              if repo.user.login == self.member.login # your repo?
-                watcher = self.watchers.on entry.watching_repository
-                watcher.authors.add author
-              else
-                watching = self.watchings.on entry.watching_repository
-                watching.authors.add author
-              end
-            end
-          elsif entry.all_follow_event?
-            if entry.following_user == self.member.login
-              self.followers.add author
-            else
-              following = self.followings.with entry.following_user
-              following.authors.add author
-            end
-          elsif entry.all_activity_event? # issue, comment event
-            self.active_repositories.add entry
-          end
-          entry.generated!
-        end
-      rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed, Faraday::Error::ParsingError, Octokit::InternalServerError
-        logger.info "Connect Error: #{entry.short_id}"
-      end
-    end
+    self.entries.ungenerated.each(&:generate)
   end
 end

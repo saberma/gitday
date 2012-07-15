@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715002822) do
+ActiveRecord::Schema.define(:version => 20120715040154) do
 
   create_table "active_repositories", :force => true do |t|
     t.integer "day_id"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(:version => 20120715002822) do
     t.text     "settings"
     t.datetime "published_at"
   end
+
+  create_table "commits", :force => true do |t|
+    t.integer  "repository_id", :null => false
+    t.integer  "author_id"
+    t.string   "sha",           :null => false
+    t.text     "message"
+    t.datetime "published_at",  :null => false
+  end
+
+  add_index "commits", ["sha"], :name => "index_commits_on_sha", :unique => true
 
   create_table "days", :force => true do |t|
     t.integer "member_id",                       :null => false

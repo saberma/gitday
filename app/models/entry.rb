@@ -1,7 +1,7 @@
 class Entry < ActiveRecord::Base
   belongs_to :day
   WATCH_EVENT = %w(CreateEvent WatchEvent ForkEvent)
-  ACTIVITY_EVENT = %w(IssueCommentEvent)
+  ACTIVITY_EVENT = %w(IssueCommentEvent PushEvent)
   store :settings, accessors: [ :ref, :shas ] # Push: ref, shas.
   attr_accessible :short_id, :link, :author, :generated, :published_at, :ref, :shas
   scope :ungenerated, where(:generated => false)
@@ -28,8 +28,35 @@ class Entry < ActiveRecord::Base
 
   end
 
-  def generated!
-    self.update_attributes! :generated => true
+  def generate
+    logger.info "Entry: #{self.short_id}"
+    self.class.transaction do
+      user = User.get(self.author)
+      if self.all_watch_event?
+        repo = Repository.get(self.watching_repository)
+        if repo # repo was destroyed
+          if repo.user.login == day.member.login # your repo?
+            watcher = day.watchers.on self.watching_repository
+            watcher.authors.add user
+          else
+            watching = day.watchings.on self.watching_repository
+            watching.authors.add user
+          end
+        end
+      elsif self.all_follow_event?
+        if self.following_user == day.member.login
+          day.followers.add user
+        else
+          following = day.followings.with self.following_user
+          following.authors.add user
+        end
+      elsif self.all_activity_event? # issue, comment event, push
+        day.active_repositories.add self
+      end
+      self.update_attributes! generated: true
+    end
+  rescue Errno::ETIMEDOUT, Faraday::Error::TimeoutError, Faraday::Error::ConnectionFailed, Faraday::Error::ParsingError, Octokit::InternalServerError
+    logger.info "Connect Error: #{self.short_id}"
   end
 
   def uri
@@ -48,18 +75,25 @@ class Entry < ActiveRecord::Base
     link.strip if all_watch_event?
   end
 
-  begin 'issue comment'
+  begin 'activity'
 
     def active_repository
-      link.sub(/\/issues.+/, '') if all_activity_event?
+      if all_activity_event?
+        link.sub(/\/issues.+/, '') if issue_event?
+        link.sub(/\/compare.+/, '') if push_event?
+      end
     end
 
-    def issue_number
-      link.match(/.+issues\/(\d+)#issuecomment.+/)[1].to_i
-    end
+    begin 'issue comment'
 
-    def comment_id
-      link.sub(/.+issuecomment-/, '').to_i
+      def issue_number
+        link.match(/.+issues\/(\d+)#issuecomment.+/)[1].to_i
+      end
+
+      def comment_id
+        link.sub(/.+issuecomment-/, '').to_i
+      end
+
     end
 
   end
@@ -74,8 +108,16 @@ class Entry < ActiveRecord::Base
       event == 'WatchEvent'
     end
 
+    def issue_event?
+      event == 'IssueCommentEvent'
+    end
+
     def all_follow_event?
       event == 'FollowEvent'
+    end
+
+    def push_event?
+      event == 'PushEvent'
     end
 
     def all_watch_event?

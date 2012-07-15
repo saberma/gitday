@@ -76,6 +76,8 @@ FactoryGirl.define do
       link "elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f"
       author "kimchy"
       published_at '2012-07-14 11:19:16'
+      ref '0.19'
+      shas ['a5e5413']
     end
 
   end

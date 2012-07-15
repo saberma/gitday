@@ -10,14 +10,25 @@ class ActiveRepository < ActiveRecord::Base
       @association.owner
     end
 
+    def get(repository_id)
+      day.active_repositories.where(repository_id: repository_id).first_or_create
+    end
+
     def add(entry)
       user = User.get(entry.author)
       repo = Repository.get(entry.active_repository)
-      issue = repo.issues.get(entry.issue_number)
-      issue.comments.get(entry.comment_id)
-      active_repo = find_by_repository_id(repo.id)
-      active_repo ||= day.active_repositories.create(repository_id: repo.id)
-      active_repo.activities.create author: user, event: entry.event, comment_id: entry.comment_id, published_at: entry.published_at
+      attributes = { author_id: user, event: entry.event, published_at: entry.published_at }
+      if entry.issue_event?
+        issue = repo.issues.get(entry.issue_number)
+        issue.comments.get(entry.comment_id)
+        attributes.merge! comment_id: entry.comment_id
+      elsif entry.push_event?
+        entry.shas.each do |sha|
+          repo.commits.add sha
+        end
+        attributes.merge! ref: entry.ref, shas: entry.shas
+      end
+      get(repo.id).activities.create attributes
     end
 
   end
