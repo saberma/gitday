@@ -67,6 +67,12 @@ Spork.each_run do
 
 end
 
+def parse(file)
+  feed = Feedzirra::Feed.parse(File.open(Rails.root.join("spec/factories/data/#{file}"), 'r').read)
+  feed.etag = 'foo_etag'
+  feed
+end
+
 # --- Instructions ---
 # - Sort through your spec_helper file. Place as much environment loading
 #   code that you don't normally modify during development in the

@@ -4,9 +4,9 @@ module Feedzirra
       include SAXMachine
       include FeedEntryUtilities
       TAG_REGEXP = Regexp.new("#{Feedzirra::Parser::GithubNewsAtom::TAG_PREFIX}:(\\w+)\\/(\\d+)")
-      # IssueCommentEvent IssuesEvent PullRequestEvent PushEvent
+      # IssuesEvent PullRequestEvent
       # http://developer.github.com/v3/events/types
-      EVENT = %w(CreateEvent FollowEvent IssueCommentEvent MemberEvent WatchEvent ForkEvent)
+      EVENT = %w(CreateEvent FollowEvent IssueCommentEvent PushEvent MemberEvent WatchEvent ForkEvent)
       
       element :id, :as => :entry_id # tag:github.com,2008:GollumEvent/1549035188
       element :published
@@ -57,6 +57,10 @@ module Feedzirra
           event == 'IssueCommentEvent'
         end
 
+        def push_event?
+          event == 'PushEvent'
+        end
+
         def create_tag_event?
           event == 'CreateEvent' and title.include?('created tag')
         end
@@ -65,6 +69,19 @@ module Feedzirra
           event == 'CreateEvent' and title.include?('created branch')
         end
 
+      end
+
+      begin 'push event'
+
+        def ref # branch name
+          title.match(/.+pushed to (.+) at .+/)[1] if push_event?
+        end
+
+        def shas
+          Nokogiri::HTML(content).css(".commits ul li a:nth-child(2)").map do |link|
+            link.content
+          end if push_event?
+        end
       end
     end
   end

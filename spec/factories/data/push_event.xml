@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-09T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/1573393297</id>
+    <published>2012-07-14T11:19:16Z</published>
+    <updated>2012-07-14T11:19:16Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f"/>
+    <title type="html">kimchy pushed to 0.19 at elasticsearch/elasticsearch</title>
+    <author>
+      <name>kimchy</name>
+      <email>kimchy@gmail.com</email>
+      <uri>https://github.com/kimchy</uri>
+    </author>
+    <content type="html">&lt;span class=&quot;mini-icon mini-icon-push&quot;&gt;&lt;/span&gt;
+
+&lt;div class=&quot;title&quot;&gt;
+  &lt;a href=&quot;/kimchy&quot;&gt;kimchy&lt;/a&gt; &lt;span&gt;pushed&lt;/span&gt; to 0.19 at &lt;a href=&quot;/elasticsearch/elasticsearch&quot;&gt;elasticsearch/elasticsearch&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-14T11:19:16Z&quot; title=&quot;2012-07-14 11:19:16&quot;&gt;July 14, 2012&lt;/time&gt;
+&lt;/div&gt;
+&lt;div class=&quot;details&quot;&gt;
+  
+
+  &lt;div class=&quot;commits&quot;&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+      &lt;a href=&quot;/kimchy&quot; class=&quot;committer&quot;&gt;kimchy&lt;/a&gt; committed &lt;a href=&quot;/elasticsearch/elasticsearch/commit/a5e541351f25c7b0317fd54db232b05c39c3be71&quot;&gt;a5e5413&lt;/a&gt;
+
+        &lt;div class=&quot;message&quot;&gt;
+          &lt;blockquote&gt;upgrade to guava 12.0.1&lt;/blockquote&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </content>
+  </entry>
+</feed>

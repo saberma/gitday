@@ -57,10 +57,15 @@ describe Feedzirra::Parser::GithubNewsAtomEntry do
     end
   end
 
-end
+  context 'PushEvent' do
 
-def parse(file)
-  feed = Feedzirra::Feed.parse(File.open(Rails.root.join("spec/factories/data/#{file}"), 'r').read)
-  feed.etag = 'foo_etag'
-  feed
+    let(:file) { "push_event.xml" }
+
+    it 'should be parse' do
+      entry.link.should eql 'elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f'
+      entry.ref.should eql '0.19'
+      entry.shas.should eql ['a5e5413']
+    end
+  end
+
 end
