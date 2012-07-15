@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120707134201) do
     t.integer  "active_repository_id"
     t.integer  "author_id"
     t.string   "event",                :limit => 32
-    t.integer  "event_id"
+    t.text     "settings"
     t.datetime "published_at"
   end
 
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20120707134201) do
     t.string   "login",               :limit => 128,                   :null => false
     t.string   "token",               :limit => 32
     t.string   "etag",                :limit => 32
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "remember_token",      :limit => 64
     t.boolean  "subscribed",                         :default => true
     t.string   "time_zone",           :limit => 32
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20120707134201) do
     t.string   "homepage"
     t.string   "language",    :limit => 16
     t.integer  "watchers"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20120707134201) do
     t.integer  "following"
     t.string   "avatar_url"
     t.string   "gravatar_id",  :limit => 32
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "watcher_authors", :force => true do |t|

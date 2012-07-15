@@ -17,7 +17,7 @@ class ActiveRepository < ActiveRecord::Base
       issue.comments.get(entry.comment_id)
       active_repo = find_by_repository_id(repo.id)
       active_repo ||= day.active_repositories.create(repository_id: repo.id)
-      active_repo.activities.create author: user, event: entry.event, event_id: entry.comment_id, published_at: entry.published_at
+      active_repo.activities.create author: user, event: entry.event, comment_id: entry.comment_id, published_at: entry.published_at
     end
 
   end

@@ -13,7 +13,6 @@ end
 i = 0
 while($running) do
   i += 1
-  Rails.logger.auto_flushing = true
   Rails.logger.info "[#{Time.now.to_s(:db)}] Member.generate_daily_report:#{i}"
   Member.generate_daily_report
   

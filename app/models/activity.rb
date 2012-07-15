@@ -1,7 +1,8 @@
 class Activity < ActiveRecord::Base
   belongs_to :active_repository, counter_cache: true
   belongs_to :author, class_name: 'User'
-  attr_accessible :author, :event, :event_id, :published_at
+  attr_accessible :author, :event, :comment_id, :published_at
+  store :settings, accessors: [ :comment_id, :branch_id ]
 
   def action # commented on
     case event
@@ -12,7 +13,7 @@ class Activity < ActiveRecord::Base
   def name # issue #1223
     case event
     when 'IssueCommentEvent'
-      comment = IssueComment.find_by_comment_id(event_id)
+      comment = IssueComment.find_by_comment_id(comment_id)
       "issue #{comment.issue.number}"
     end
   end
@@ -20,7 +21,7 @@ class Activity < ActiveRecord::Base
   def link
     case event
     when 'IssueCommentEvent'
-      comment = IssueComment.find_by_comment_id(event_id)
+      comment = IssueComment.find_by_comment_id(comment_id)
       issue = comment.issue
       "https://github.com/#{issue.repository.fullname}/issues/#{issue.number}#issuecomment-#{comment.comment_id}"
     end
@@ -29,7 +30,7 @@ class Activity < ActiveRecord::Base
   def title # issue title
     case event
     when 'IssueCommentEvent'
-      comment = IssueComment.find_by_comment_id(event_id)
+      comment = IssueComment.find_by_comment_id(comment_id)
       comment.issue.title
     end
   end
@@ -37,7 +38,7 @@ class Activity < ActiveRecord::Base
   def body
     case event
     when 'IssueCommentEvent'
-      comment = IssueComment.find_by_comment_id(event_id)
+      comment = IssueComment.find_by_comment_id(comment_id)
       comment.body
     end
   end
