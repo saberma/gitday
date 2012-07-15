@@ -79,8 +79,11 @@ class Entry < ActiveRecord::Base
 
     def active_repository
       if all_activity_event?
-        link.sub(/\/issues.+/, '') if issue_event?
-        link.sub(/\/compare.+/, '') if push_event?
+        if issue_event?
+          link.sub(/\/issues.+/, '')
+        elsif push_event?
+          link.sub(/\/compare.+/, '')
+        end
       end
     end
 

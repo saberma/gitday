@@ -17,7 +17,7 @@ class ActiveRepository < ActiveRecord::Base
     def add(entry)
       user = User.get(entry.author)
       repo = Repository.get(entry.active_repository)
-      attributes = { author_id: user, event: entry.event, published_at: entry.published_at }
+      attributes = { author_id: user.id, event: entry.event, published_at: entry.published_at }
       if entry.issue_event?
         issue = repo.issues.get(entry.issue_number)
         issue.comments.get(entry.comment_id)
