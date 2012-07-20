@@ -13,8 +13,8 @@ end
 i = 0
 while($running) do
   i += 1
-  Rails.logger.info "[#{Time.now.to_s(:db)}] Repository.get_activities_feed:#{i}"
-  Repository.get_activities_feed
+  Rails.logger.info "[#{Time.now.to_s(:db)}] RepositoryEntry.generate:#{i}"
+  RepositoryEntry.generate
   
-  sleep 1
+  sleep 10
 end

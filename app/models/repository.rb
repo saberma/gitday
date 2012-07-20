@@ -2,9 +2,11 @@ class Repository < ActiveRecord::Base
   belongs_to :user
   has_many :issues , extend: Issue::Extension
   has_many :commits, extend: Commit::Extension
-  attr_accessible :user, :fullname, :description, :homepage, :language, :watchers
+  has_many :activities  , dependent: :destroy, order: 'published_at desc'
+  attr_accessible :user_id, :fullname, :description, :homepage, :language, :watchers
 
   scope :preview, limit: 2
+  @@etag = nil
 
   # @fullname saberma/shopqi
   def self.get(fullname, json = nil, user = nil)
@@ -14,7 +16,7 @@ class Repository < ActiveRecord::Base
       user ||= User.get(json['owner']['login'], with_repositories: false)
       repo = self.create({
         :fullname => fullname,
-        :user => user,
+        :user_id => user.id,
         :description => json['description'],
         :homepage => json['homepage'],
         :language => json['language'],
@@ -32,4 +34,22 @@ class Repository < ActiveRecord::Base
   def uri
     "https://github.com/#{fullname}"
   end
+
+  def self.get_activities_feed
+    url = "https://github.com/#{SecretSetting.tracker.login}.private.atom?token=#{SecretSetting.tracker.token}"
+    feed = Feedzirra::Feed.fetch_and_parse(url, max_redirects: 3, timeout: 30)
+    unless feed.is_a?(Integer) # 发生错误时feed为错误码
+      if feed.etag != @@etag
+        self.transaction do
+          feed.entries.reverse_each do |entry|
+            RepositoryEntry.add entry
+          end
+          @@etag = feed.etag
+        end
+      end
+    end
+  rescue => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
+  end
+
 end

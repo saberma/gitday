@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require "daemons"
+require "daemons/rails/config"
+
+config = Daemons::Rails::Config.new("gitday_parser", File.dirname(__FILE__) + "/../../")
+
+Daemons.run File.dirname(__FILE__) + "/gitday_parser.rb", config.to_hash

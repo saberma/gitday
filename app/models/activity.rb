@@ -1,7 +1,7 @@
 class Activity < ActiveRecord::Base
   include Event
   extend ActiveSupport::Memoizable
-  belongs_to :active_repository, counter_cache: true
+  belongs_to :repository
   belongs_to :author, class_name: 'User'
   store :settings, accessors: [ :comment_id, :ref, :shas ] # IssueComment: comment_id. Push: ref, shas
   attr_accessible :author_id, :event, :published_at, :comment_id, :ref, :shas

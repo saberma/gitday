@@ -77,7 +77,6 @@ class Member < ActiveRecord::Base
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
-    raise e # terminal daemon
   end
 
 end
