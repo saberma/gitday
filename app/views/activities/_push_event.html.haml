@@ -16,4 +16,4 @@
               %span=image_tag commit.author.avatar_url, style: 'width: 16px; height: 16px;', title: commit.author.login
             %span.code=link_to commit.sha, commit.uri
             .message
-              %blockquote(title="#{commit.message}")=truncate(commit.message.sub(/\n+.+/, ''), length: 100)
+              %blockquote(title="#{commit.message}")=truncate(commit.message.strip.gsub(/\n+.+/, ''), length: 100)
