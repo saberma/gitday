@@ -87,7 +87,7 @@ body {
   .row {
     margin-bottom: 20px; }
   h4 {
-    margin-bottom: 10px; }
+    margin-bottom: 1em; }
   img {
     border: 1px solid #ccc; } }
 
@@ -101,23 +101,30 @@ body {
   .divider {
     color: #999; } }
 
+.page-header {
+  padding-bottom: 5px;
+  margin: 4em 1em 0 0;
+  h4{
+    color: #999; }
+  .day > h1.title + .active_repository &,
+  .day > h1.title + .follower &:first-child,
+  .day > h1.title + .watcher &:first-child,
+  .day > h1.title + .followed &:first-child,
+  .day > h1.title + .watched &:first-child {
+    margin-top: 1em; } }
+
 .day {
-  .page-header {
-    padding-bottom: 5px;
-    margin: 25px 10px 0 0;
-    h4{
-      color: #999; } }
   .active_repository {
     ul {
-      margin-right: 10px;
+      margin: 0 1em 0 0;
       li {
         border-bottom: 1px solid #eee;
         overflow: hidden;
-        padding: 0 0 1em 0;
+        padding: 1em 0 1em 0;
         clear: both; } }
     .title {
       font-weight: bold;
-      padding: 0.25em 0; }
+      padding-bottom: 0.25em; }
     .details {
       clear: both;
       .gravatar {
@@ -136,8 +143,11 @@ body {
             font-size: 13px;
             line-height: 1.4; } } }
       .commits li {
+        width: 559px;
         clear: none;
         border-bottom: none;
+        padding: 0;
+        margin: .25em 0 0 3.5em;
         img {
           border: 1px solid #D0D0D0;
           padding: 1px;
@@ -147,13 +157,13 @@ body {
         blockquote {
           display: inline; } } } }
   .content {
-    padding: 10px 0;
+    padding: 1em 0;
     border-bottom: #E2E2E2 dashed 1px;
     overflow: auto;
     .well {
       margin-bottom: 0; }
     .authors {
-      margin-top: 10px; } } }
+      margin-top: 1em; } } }
 
 .alert ul {
   margin-top: 13px; }

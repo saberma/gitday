@@ -12,7 +12,8 @@
       %ul
         -activity.commits.each do |commit|
           %li
-            %span=image_tag commit.author.avatar_url, style: 'width: 16px; height: 16px;', title: commit.author.login
+            -unless activity.commits.size == 1
+              %span=image_tag commit.author.avatar_url, style: 'width: 16px; height: 16px;', title: commit.author.login
             %span.code=link_to commit.sha, commit.uri
             .message
-              %blockquote(title="#{commit.message}")=truncate(commit.message, length: 100)
+              %blockquote(title="#{commit.message}")=truncate(commit.message.sub(/\n+.+/, ''), length: 100)

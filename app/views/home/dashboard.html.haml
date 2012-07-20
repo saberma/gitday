@@ -8,11 +8,11 @@
 
         -@active_repositories.each do |active_repo|
           -unless active_repo.activities.empty?
-            .active_repository
+            .active_repository{ class: (active_repo == @active_repositories.first && :first)}
               .page-header
                 %h4
+                  %i.icon-list-alt(title="ACITIVITIES")
                   =link_to active_repo.repository.fullname, active_repo.repository.uri
-                  ACTIVITIES:
               %ul.unstyled
                 -active_repo.activities.each do |activity|
                   =render partial: "activities/#{activity.event.underscore}", locals: { activity: activity }
