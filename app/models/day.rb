@@ -1,6 +1,5 @@
 class Day < ActiveRecord::Base
   belongs_to :member
-  has_many :entries                  , dependent: :destroy, order: 'id desc'              , extend: Entry::Extension
   # YOUR WATCHING ACTIVE REPOSITORIES
   has_many :active_repositories      , dependent: :destroy, order: 'activities_count desc', extend: ActiveRepository::Extension
   # YOUR FRIENDS ACTIVITIES
@@ -41,10 +40,5 @@ class Day < ActiveRecord::Base
 
   def title
     "Day #{self.number}"
-  end
-
-  def generate
-    logger.info "Day: #{self.number}"
-    self.entries.ungenerated.each(&:generate)
   end
 end

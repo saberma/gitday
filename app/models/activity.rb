@@ -5,6 +5,32 @@ class Activity < ActiveRecord::Base
   store :settings, accessors: [ :comment_id, :ref, :shas ] # IssueComment: comment_id. Push: ref, shas
   attr_accessible :author_id, :event, :published_at, :comment_id, :ref, :shas
 
+  module Extension
+
+    def repository
+      @association.owner
+    end
+
+    def add(entry)
+      user = User.get(entry.author)
+      attributes = { author_id: user.id, event: entry.event, published_at: entry.published_at }
+      if entry.issue_comment_event?
+        issue = repository.issues.get(entry.issue_number)
+        issue.comments.get(entry.comment_id)
+        attributes.merge! comment_id: entry.comment_id
+      elsif entry.push_event?
+        entry.shas.each do |sha|
+          repository.commits.add sha
+        end
+        attributes.merge! ref: entry.ref, shas: entry.shas
+      end
+      repository.activities.create attributes
+    rescue Octokit::NotFound
+      logger.info "Octokit NotFound Error: #{entry.short_id}"
+    end
+
+  end
+
   begin 'issue comment'
 
     def comment
@@ -20,7 +46,7 @@ class Activity < ActiveRecord::Base
   begin 'push'
 
     def commits
-      @commits ||= self.active_repository.repository.commits.where(sha: self.shas)
+      @commits ||= repository.commits.where(sha: self.shas)
     end
 
   end

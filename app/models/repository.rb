@@ -2,7 +2,7 @@ class Repository < ActiveRecord::Base
   belongs_to :user
   has_many :issues , extend: Issue::Extension
   has_many :commits, extend: Commit::Extension
-  has_many :activities  , dependent: :destroy, order: 'published_at desc'
+  has_many :activities  , dependent: :destroy, order: 'published_at desc', extend: Activity::Extension
   attr_accessible :user_id, :fullname, :description, :homepage, :language, :watchers
 
   scope :preview, limit: 2

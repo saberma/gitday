@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(:version => 20120721025040) do
   end
 
   create_table "activities", :force => true do |t|
-    t.integer  "active_repository_id",               :null => false
-    t.integer  "author_id",                          :null => false
-    t.string   "event",                :limit => 32, :null => false
+    t.integer  "repository_id",               :null => false
+    t.integer  "author_id",                   :null => false
+    t.string   "event",         :limit => 32, :null => false
     t.text     "settings"
-    t.datetime "published_at",                       :null => false
+    t.datetime "published_at",                :null => false
   end
 
   create_table "commits", :force => true do |t|
