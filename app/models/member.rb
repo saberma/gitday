@@ -64,7 +64,7 @@ class Member < ActiveRecord::Base
         unless feed.is_a?(Integer) # 发生错误时feed为错误码
           if feed.etag != member.etag
             Member.transaction do
-              feed.entries.reverse_each do |entry|
+              feed.user_entries.reverse_each do |entry|
                 day = member.days.get entry.published
                 day.entries.add(entry)
               end

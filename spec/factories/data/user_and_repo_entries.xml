@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-09T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:IssueCommentEvent/1576196942</id>
+    <published>2012-07-20T21:49:17Z</published>
+    <updated>2012-07-20T21:49:17Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/issues/2639#issuecomment-7142606"/>
+    <title type="html">fredngo commented on issue 2639 on rails/rails</title>
+    <author>
+      <name>fredngo</name>
+      <email>fredngo@gmail.com</email>
+      <uri>https://github.com/fredngo</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/c5af7c2db5bd4dd11741098e1b5f274c?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html">&lt;span class=&quot;mini-icon mini-icon-issue-comment&quot;&gt;&lt;/span&gt;
+
+&lt;div class=&quot;title&quot;&gt;
+  &lt;a href=&quot;/fredngo&quot;&gt;fredngo&lt;/a&gt;
+  &lt;span&gt;commented&lt;/span&gt; on
+  &lt;a href=&quot;https://github.com/rails/rails/issues/2639#issuecomment-7142606&quot; title=&quot;Served asset log messages are pretty annoying! :) &quot;&gt;issue 2639&lt;/a&gt; on &lt;a href=&quot;/rails/rails&quot;&gt;rails/rails&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-20T21:49:17Z&quot; title=&quot;2012-07-20 21:49:17&quot;&gt;July 20, 2012&lt;/time&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;details&quot;&gt;
+  
+  &lt;div class=&quot;message&quot;&gt;
+    &lt;blockquote title=&quot;Thanks @macournoyer , I need that just in time! :)&quot;&gt;
+      &lt;p&gt;Thanks &lt;a href=&quot;https://github.com/macournoyer&quot; class=&quot;user-mention&quot;&gt;@macournoyer&lt;/a&gt; , I need that just in time! :)&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </content>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:WatchEvent/1574633095</id>
+    <published>2012-07-17T14:36:01Z</published>
+    <updated>2012-07-17T14:36:01Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/thomas-mcdonald/bootstrap-sass"/>
+    <title type="html">saberma started watching thomas-mcdonald/bootstrap-sass</title>
+    <author>
+      <name>saberma</name>
+      <email>mahb45@gmail.com</email>
+      <uri>https://github.com/saberma</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/871c4ba6d25169779cee977e04b2f0c3?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html">&lt;span class=&quot;mini-icon mini-icon-watching&quot;&gt;&lt;/span&gt;
+
+&lt;div class=&quot;title&quot;&gt;
+  &lt;a href=&quot;/saberma&quot;&gt;saberma&lt;/a&gt; &lt;span&gt;started watching&lt;/span&gt; &lt;a href=&quot;/thomas-mcdonald/bootstrap-sass&quot;&gt;thomas-mcdonald/bootstrap-sass&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-17T14:36:01Z&quot; title=&quot;2012-07-17 14:36:01&quot;&gt;July 17, 2012&lt;/time&gt;
+&lt;/div&gt;
+&lt;div class=&quot;details&quot;&gt;
+  
+  &lt;div class=&quot;message&quot;&gt;
+    bootstrap-sass's description:
+&lt;blockquote&gt;bootstrap-sass is bootstrap for Sass, ready to roll&lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </content>
+  </entry>
+</feed>

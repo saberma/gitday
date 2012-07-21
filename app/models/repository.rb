@@ -41,7 +41,7 @@ class Repository < ActiveRecord::Base
     unless feed.is_a?(Integer) # 发生错误时feed为错误码
       if feed.etag != @@etag
         self.transaction do
-          feed.entries.reverse_each do |entry|
+          feed.repo_entries.reverse_each do |entry|
             RepositoryEntry.add entry
           end
           @@etag = feed.etag

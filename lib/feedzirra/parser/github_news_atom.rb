@@ -16,8 +16,12 @@ module Feedzirra
         %r{<id>tag:github\.com,2008.*private\</id\>} =~ xml
       end
 
-      def entries
-        orig_entries.reject(&:ignore?)
+      def user_entries
+        orig_entries.select(&:user?)
+      end
+
+      def repo_entries
+        orig_entries.select(&:repo?)
       end
 
       def etag_with_strip # remove etag quote

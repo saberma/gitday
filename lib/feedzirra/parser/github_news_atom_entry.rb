@@ -7,6 +7,8 @@ module Feedzirra
       # IssuesEvent PullRequestEvent
       # http://developer.github.com/v3/events/types
       EVENT = %w(CreateEvent FollowEvent IssueCommentEvent PushEvent MemberEvent WatchEvent ForkEvent)
+      USER_EVENT = %w(CreateEvent FollowEvent WatchEvent ForkEvent)
+      REPO_EVENT = %w(IssueCommentEvent PushEvent MemberEvent)
       
       element :id, :as => :entry_id # tag:github.com,2008:GollumEvent/1549035188
       element :published
@@ -45,6 +47,14 @@ module Feedzirra
 
       def ignore?
         !EVENT.include?(event) or create_tag_event? or create_branch_event?
+      end
+
+      def repo?
+        !ignore? and REPO_EVENT.include?(event)
+      end
+
+      def user?
+        !ignore? and USER_EVENT.include?(event)
       end
 
       begin 'events'

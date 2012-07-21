@@ -16,7 +16,7 @@ describe Entry do
 
     context 'comment' do
 
-      let(:feed_entry) { parse("comment_event.xml").entries.first }
+      let(:feed_entry) { parse("comment_event.xml").repo_entries.first }
 
       it 'should be success' do
         entry.active_repository.should eql 'blueimp/jQuery-File-Upload'
@@ -28,7 +28,7 @@ describe Entry do
 
     context 'push' do
 
-      let(:feed_entry) { parse("push_event.xml").entries.first }
+      let(:feed_entry) { parse("push_event.xml").repo_entries.first }
 
       it 'should be success' do
         entry.link.should eql 'elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f'
