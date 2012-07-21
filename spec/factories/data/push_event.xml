@@ -6,21 +6,22 @@
   <title>Private Feed for saberma</title>
   <updated>2012-05-09T06:15:21Z</updated>
   <entry>
-    <id>tag:github.com,2008:PushEvent/1573393297</id>
-    <published>2012-07-14T11:19:16Z</published>
-    <updated>2012-07-14T11:19:16Z</updated>
-    <link type="text/html" rel="alternate" href="https://github.com/elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f"/>
-    <title type="html">kimchy pushed to 0.19 at elasticsearch/elasticsearch</title>
+    <id>tag:github.com,2008:PushEvent/1576276158</id>
+    <published>2012-07-21T06:06:07Z</published>
+    <updated>2012-07-21T06:06:07Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/compare/3561e85bb1...98f4aee8da"/>
+    <title type="html">fxn pushed to master at rails/rails</title>
     <author>
-      <name>kimchy</name>
-      <email>kimchy@gmail.com</email>
-      <uri>https://github.com/kimchy</uri>
+      <name>fxn</name>
+      <email>fxn@hashref.com</email>
+      <uri>https://github.com/fxn</uri>
     </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/7223c62b7310e164eb79c740188abbda?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
     <content type="html">&lt;span class=&quot;mini-icon mini-icon-push&quot;&gt;&lt;/span&gt;
 
 &lt;div class=&quot;title&quot;&gt;
-  &lt;a href=&quot;/kimchy&quot;&gt;kimchy&lt;/a&gt; &lt;span&gt;pushed&lt;/span&gt; to 0.19 at &lt;a href=&quot;/elasticsearch/elasticsearch&quot;&gt;elasticsearch/elasticsearch&lt;/a&gt;
-  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-14T11:19:16Z&quot; title=&quot;2012-07-14 11:19:16&quot;&gt;July 14, 2012&lt;/time&gt;
+  &lt;a href=&quot;/fxn&quot;&gt;fxn&lt;/a&gt; &lt;span&gt;pushed&lt;/span&gt; to master at &lt;a href=&quot;/rails/rails&quot;&gt;rails/rails&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-21T06:06:07Z&quot; title=&quot;2012-07-21 06:06:07&quot;&gt;July 21, 2012&lt;/time&gt;
 &lt;/div&gt;
 &lt;div class=&quot;details&quot;&gt;
   
@@ -28,15 +29,15 @@
   &lt;div class=&quot;commits&quot;&gt;
     &lt;ul&gt;
       &lt;li&gt;
-      &lt;a href=&quot;/kimchy&quot; class=&quot;committer&quot;&gt;kimchy&lt;/a&gt; committed &lt;a href=&quot;/elasticsearch/elasticsearch/commit/a5e541351f25c7b0317fd54db232b05c39c3be71&quot;&gt;a5e5413&lt;/a&gt;
+      &lt;a href=&quot;/fxn&quot; class=&quot;committer&quot;&gt;fxn&lt;/a&gt; committed &lt;a href=&quot;/rails/rails/commit/98f4aee8dac22d9e9bb3c122b43e9e5ee8ba7d1c&quot;&gt;98f4aee&lt;/a&gt;
 
         &lt;div class=&quot;message&quot;&gt;
-          &lt;blockquote&gt;upgrade to guava 12.0.1&lt;/blockquote&gt;
+          &lt;blockquote&gt;Hash#fetch(fetch) is not the same as doing hash[key]&lt;/blockquote&gt;
         &lt;/div&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-    </content>
+</content>
   </entry>
 </feed>
