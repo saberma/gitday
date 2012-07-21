@@ -1,6 +1,6 @@
 class Entry < ActiveRecord::Base
   include Event
-  belongs_to :day
+  belongs_to :member # repo entries from gitday feed do not have member
   store :settings, accessors: [ :ref, :shas ] # Push: ref, shas.
   attr_accessible :short_id, :link, :author, :generated, :published_at, :ref, :shas
   scope :ungenerated, where(:generated => false)

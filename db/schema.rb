@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720132414) do
+ActiveRecord::Schema.define(:version => 20120721025040) do
 
   create_table "active_repositories", :force => true do |t|
     t.integer "day_id"
@@ -46,15 +46,13 @@ ActiveRecord::Schema.define(:version => 20120720132414) do
 
   create_table "entries", :force => true do |t|
     t.string   "short_id",     :limit => 32
-    t.integer  "day_id"
     t.string   "link",         :limit => 128
     t.string   "author",       :limit => 64
     t.boolean  "generated",                   :default => false
     t.datetime "published_at"
     t.text     "settings"
+    t.integer  "member_id"
   end
-
-  add_index "entries", ["day_id"], :name => "index_entries_on_day_id"
 
   create_table "followers", :force => true do |t|
     t.integer  "day_id"
