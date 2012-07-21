@@ -5,6 +5,8 @@ class Activity < ActiveRecord::Base
   store :settings, accessors: [ :comment_id, :ref, :shas ] # IssueComment: comment_id. Push: ref, shas
   attr_accessible :author_id, :event, :published_at, :comment_id, :ref, :shas
 
+  scope :today, lambda { where(published_at: Time.now.all_day) }
+
   module Extension
 
     def repository

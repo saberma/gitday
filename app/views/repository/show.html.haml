@@ -1,0 +1,8 @@
+.active_repository
+  .page-header
+    %h4
+      %i.icon-list-alt(title="ACITIVITIES")
+      =link_to @repository.fullname, @repository.uri
+  %ul.unstyled
+    -@activities.each do |activity|
+      =render partial: "activities/#{activity.event.underscore}", locals: { activity: activity }

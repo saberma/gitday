@@ -14,4 +14,6 @@ Gitday::Application.routes.draw do
   get '/member/subscribe', to: 'members/subscribe#create', :as => :member_subscribe
 
   get '/:number', to: 'home#day', number: /\d+/, :as => :day
+
+  get '/:fullname', to: 'repository#show', fullname: /.+\/.+/ # rails/rails
 end

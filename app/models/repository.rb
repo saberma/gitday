@@ -27,14 +27,6 @@ class Repository < ActiveRecord::Base
   rescue Octokit::NotFound
   end
 
-  def name
-    self.fullname.split('/').second
-  end
-
-  def uri
-    "https://github.com/#{fullname}"
-  end
-
   def self.get_activities_feed
     url = "https://github.com/#{SecretSetting.tracker.login}.private.atom?token=#{SecretSetting.tracker.token}"
     feed = Feedzirra::Feed.fetch_and_parse(url, max_redirects: 3, timeout: 30)
@@ -50,6 +42,14 @@ class Repository < ActiveRecord::Base
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
+  end
+
+  def name
+    self.fullname.split('/').second
+  end
+
+  def uri
+    "https://github.com/#{fullname}"
   end
 
 end
