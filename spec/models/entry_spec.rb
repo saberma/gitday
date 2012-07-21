@@ -14,24 +14,24 @@ describe Entry do
 
       context 'comment' do
 
-        let(:feed_entry) { parse("comment_event.xml").repo_entries.first }
+        let(:feed_entry) { parse("comment_issue_event.xml").repo_entries.first }
 
         it 'should be success' do
-          entry.repository.should eql 'blueimp/jQuery-File-Upload'
-          entry.issue_number.should eql 1223
-          entry.comment_id.should eql 6733474
+          entry.repository.should eql 'rails/rails'
+          entry.issue_number.should eql 7034
+          entry.comment_id.should eql 7150761
         end
 
       end
 
       context 'push' do
 
-        let(:feed_entry) { parse("push_event.xml").repo_entries.first }
+        let(:feed_entry) { parse("push_to_branch_event.xml").repo_entries.first }
 
         it 'should be success' do
-          entry.link.should eql 'elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f'
-          entry.ref.should eql '0.19'
-          entry.shas.should eql ['a5e5413']
+          entry.link.should eql 'rails/rails/compare/089371ac23...a37b90caf4'
+          entry.ref.should eql '3-2-stable'
+          entry.shas.should eql ['a37b90c']
         end
 
       end
@@ -40,7 +40,7 @@ describe Entry do
 
     context '#generate' do
 
-      let(:entry) { FactoryGirl.create(:pushed_to_elasticsearch) }
+      let(:entry) { FactoryGirl.create(:pushed_to_branch) }
 
       it 'should be success' do
         entry

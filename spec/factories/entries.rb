@@ -69,15 +69,15 @@ FactoryGirl.define do
 
   end
 
-  begin 'elasticsearch/elasticsearch'
+  begin 'rails/rails'
 
-    factory :pushed_to_elasticsearch, parent: :entry do
-      short_id "PushEvent/1573393297"
-      link "elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f"
-      author "kimchy"
-      published_at '2012-07-14 11:19:16'
-      ref '0.19'
-      shas ['a5e5413']
+    factory :pushed_to_branch, parent: :entry do
+      short_id "PushEvent/1576276169"
+      link "rails/rails/compare/089371ac23...a37b90caf4"
+      author "fxn"
+      published_at '2012-07-21 06:06:13'
+      ref '3-2-stable'
+      shas ['a37b90c']
     end
 
   end
