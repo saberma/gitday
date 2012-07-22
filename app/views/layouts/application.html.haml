@@ -24,6 +24,11 @@
                       %i.icon-lock
                       Token
                   %li.divider
+                  %li
+                    =link_to trackings_path do
+                      %i.icon-eye-open
+                      Tracking Repository
+                  %li.divider
                   -unless current_member.subscribed
                     %li
                       =link_to member_subscribe_path do
