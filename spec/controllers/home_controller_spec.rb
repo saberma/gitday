@@ -4,6 +4,10 @@ describe HomeController do
 
   let(:member) { Factory(:member) }
 
+  let(:repository) { Factory(:rails) }
+
+  let(:tracking) { Factory(:tracking, member: member, repository: repository) }
+
   let(:day) { Factory(:day, member: member, published_on: Date.today) }
 
   let(:push_entry) { FactoryGirl.create(:pushed_to_branch, published_at: 7.hours.ago) }
@@ -13,6 +17,7 @@ describe HomeController do
   before do
     Timecop.freeze(Time.local(2012, 7, 21, 10, 0, 0))
     day
+    tracking
     sign_in(member)
     [push_entry, comment_entry].map(&:generate)
   end

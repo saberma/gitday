@@ -5,7 +5,10 @@ class Member < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable, :recoverable, :validatable
   devise :trackable, :rememberable, :omniauthable
-  has_many :days   , dependent: :destroy, order: 'id desc', extend: Day::Extension
+
+  has_many :days                 , dependent: :destroy, order: 'id desc', extend: Day::Extension
+  has_many :trackings            , dependent: :destroy, order: 'id desc'
+  has_many :tracking_repositories, through: :trackings, source: :repository
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :token, :login, :time_zone

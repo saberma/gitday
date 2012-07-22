@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721025040) do
+ActiveRecord::Schema.define(:version => 20120722040711) do
 
   create_table "active_repositories", :force => true do |t|
     t.integer "day_id"
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(:version => 20120721025040) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "trackings", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "repository_id"
+    t.datetime "created_at"
+  end
+
+  add_index "trackings", ["member_id"], :name => "index_trackings_on_member_id"
+  add_index "trackings", ["repository_id"], :name => "index_trackings_on_repository_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",        :limit => 64
