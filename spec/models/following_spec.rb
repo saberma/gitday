@@ -8,11 +8,9 @@ describe Following do
 
   let(:ichord) { Factory(:ichord) }
 
-  let(:day) { Factory(:day, member: member) }
+  let(:following_camelsong_entry) { Factory(:following_camelsong_entry, member: member) }
 
-  let(:following_camelsong_entry) { Factory(:following_camelsong_entry, day: day) }
-
-  let(:following_camelsong_again_entry) { Factory(:following_camelsong_again_entry, day: day) }
+  let(:following_camelsong_again_entry) { Factory(:following_camelsong_again_entry, member: member) }
 
   context 'somebody follow camelsong' do
 
@@ -24,8 +22,7 @@ describe Following do
 
       it 'should be ignore' do
         expect do
-          following_camelsong_again_entry
-          day.generate
+          following_camelsong_again_entry.generate
         end.should change(FollowingAuthor, :count).by(1)
       end
 

@@ -5,6 +5,7 @@ FactoryGirl.define do
     email 'mahb45@gmail.com'
     token SecretSetting.member.token
     login 'saberma'
+    time_zone 'Beijing'
   end
 
   factory :member_camelsong, parent: :member do

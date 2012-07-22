@@ -6,11 +6,9 @@ describe Follower do
 
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day, member: member) }
+  let(:following_saberma_entry) { Factory(:following_saberma_entry, member: member) }
 
-  let(:following_saberma_entry) { Factory(:following_saberma_entry, day: day) }
-
-  let(:following_saberma_again_entry) { Factory(:following_saberma_again_entry, day: day) }
+  let(:following_saberma_again_entry) { Factory(:following_saberma_again_entry, member: member) }
 
   context 'somebody follow saberma' do
 
@@ -22,8 +20,7 @@ describe Follower do
 
       it 'should be ignore' do
         expect do
-          following_saberma_again_entry
-          day.generate
+          following_saberma_again_entry.generate
         end.should change(Follower, :count).by(1)
       end
 

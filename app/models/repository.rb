@@ -34,7 +34,7 @@ class Repository < ActiveRecord::Base
       if feed.etag != @@etag
         self.transaction do
           feed.repo_entries.reverse_each do |entry|
-            RepositoryEntry.add entry
+            Entry.add entry
           end
           @@etag = feed.etag
         end

@@ -9,8 +9,6 @@ class Day < ActiveRecord::Base
 
   attr_accessible :number, :published_on, :sended
 
-  scope :in_a_week, limit: 7
-
   module Extension # http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html #Association extensions
 
     def member

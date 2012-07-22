@@ -54,21 +54,21 @@ describe Feedzirra::Parser::GithubNewsAtomEntry do
 
     context 'CommentEvent' do
 
-      let(:file) { "comment_event.xml" }
+      let(:file) { "comment_issue_event.xml" }
 
       it 'should be parse' do
-        entry.link.should eql 'blueimp/jQuery-File-Upload/issues/1223#issuecomment-6733474'
+        entry.link.should eql 'rails/rails/issues/7034#issuecomment-7150761'
       end
     end
 
     context 'PushEvent' do
 
-      let(:file) { "push_event.xml" }
+      let(:file) { "push_to_branch_event.xml" }
 
       it 'should be parse' do
-        entry.link.should eql 'elasticsearch/elasticsearch/compare/aafa8cc905...a5e541351f'
-        entry.ref.should eql '0.19'
-        entry.shas.should eql ['a5e5413']
+        entry.link.should eql 'rails/rails/compare/089371ac23...a37b90caf4'
+        entry.ref.should eql '3-2-stable'
+        entry.shas.should eql ['a37b90c']
       end
     end
 

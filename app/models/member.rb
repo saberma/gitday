@@ -30,15 +30,6 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def self.generate_daily_report
-    Member.all.each do |member|
-      member.days.in_a_week.each(&:generate)
-    end
-  rescue => e
-    ExceptionNotifier::Notifier.background_exception_notification(e)
-    raise e
-  end
-
   def self.send_daily
     Member.all.each do |member|
       if Time.now.in_time_zone(member.time_zone).hour >= 7 # 07.00 am
@@ -63,10 +54,9 @@ class Member < ActiveRecord::Base
         feed = Feedzirra::Feed.fetch_and_parse(url, max_redirects: 3, timeout: 30) # fixed feedzirra hangs
         unless feed.is_a?(Integer) # 发生错误时feed为错误码
           if feed.etag != member.etag
-            Member.transaction do
+            self.transaction do
               feed.user_entries.reverse_each do |entry|
-                day = member.days.get entry.published
-                day.entries.add(entry)
+                Entry.add entry
               end
               member.etag = feed.etag
               member.save

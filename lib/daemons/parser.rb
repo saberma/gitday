@@ -13,8 +13,8 @@ end
 i = 0
 while($running) do
   i += 1
-  Rails.logger.info "[#{Time.now.to_s(:db)}] Member.generate_daily_report:#{i}"
-  Member.generate_daily_report
+  Rails.logger.info "[#{Time.now.to_s(:db)}] Entry.generate:#{i}"
+  Entry.generate
   
   sleep 5
 end

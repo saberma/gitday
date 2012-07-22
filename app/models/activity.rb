@@ -7,8 +7,8 @@ class Activity < ActiveRecord::Base
 
   scope :today, lambda { on(Date.today, 'UTC') }
   scope :on, lambda {|date, time_zone|
-    start = Date.today.to_time.in_time_zone(time_zone).beginning_of_day
-    ends  = Date.today.to_time.in_time_zone(time_zone).end_of_day
+    start = date.to_time(:utc).in_time_zone(time_zone).beginning_of_day
+    ends  = date.to_time(:utc).in_time_zone(time_zone).end_of_day
     where(published_at: start..ends)
   }
 

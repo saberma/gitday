@@ -8,11 +8,9 @@ describe WatcherAuthor do
 
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day, member: member) }
+  let(:watching_shopqi_entry) { Factory(:watching_shopqi_entry, member: member) }
 
-  let(:watching_shopqi_entry) { Factory(:watching_shopqi_entry, day: day) }
-
-  let(:forked_shopqi_entry) { Factory(:forked_shopqi_entry, day: day) }
+  let(:forked_shopqi_entry) { Factory(:forked_shopqi_entry, member: member) }
 
   context 'somebody watched shopqi' do
 
@@ -24,8 +22,7 @@ describe WatcherAuthor do
 
       it 'should be ignore' do
         expect do
-          forked_shopqi_entry
-          day.generate
+          forked_shopqi_entry.generate
         end.should change(WatcherAuthor, :count).by(1)
       end
 

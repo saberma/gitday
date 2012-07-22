@@ -8,11 +8,9 @@ describe WatchingAuthor do
 
   let(:camelsong) { Factory(:camelsong) }
 
-  let(:day) { Factory(:day, member: member) }
+  let(:watching_ajax_crud_entry) { Factory(:watching_ajax_crud_entry, member: member) }
 
-  let(:watching_ajax_crud_entry) { Factory(:watching_ajax_crud_entry, day: day) }
-
-  let(:forked_ajax_crud_entry) { Factory(:forked_ajax_crud_entry, day: day) }
+  let(:forked_ajax_crud_entry) { Factory(:forked_ajax_crud_entry, member: member) }
 
   context 'somebody watched AjaxCRUD' do
 
@@ -24,8 +22,7 @@ describe WatchingAuthor do
 
       it 'should be ignore' do
         expect do
-          forked_ajax_crud_entry
-          day.generate
+          forked_ajax_crud_entry.generate
         end.should change(WatchingAuthor, :count).by(1)
       end
 

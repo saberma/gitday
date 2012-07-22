@@ -48,7 +48,9 @@ describe Entry do
           expect do
             expect do
               expect do
-                issue_comment_entry.generate
+                expect do
+                  issue_comment_entry.generate
+                end.should change(Repository, :count)
               end.should change(Activity, :count).by(1)
             end.should change(Issue, :count).by(1)
           end.should change(IssueComment, :count).by(1)

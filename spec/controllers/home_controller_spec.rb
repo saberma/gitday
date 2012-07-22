@@ -4,7 +4,7 @@ describe HomeController do
 
   let(:member) { Factory(:member) }
 
-  let(:day) { Factory(:day, member: member) }
+  let(:day) { Factory(:day, member: member, published_on: Date.today) }
 
   let(:push_entry) { FactoryGirl.create(:pushed_to_branch, published_at: 7.hours.ago) }
 
@@ -25,6 +25,7 @@ describe HomeController do
     it "returns http success" do
       get 'index'
       response.body.should include 'pushed to'
+      response.body.should include 'commented on'
     end
 
   end

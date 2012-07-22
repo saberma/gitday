@@ -20,6 +20,15 @@ class Entry < ActiveRecord::Base
     end
   end
 
+  def self.generate
+    ungenerated.find_each(batch_size: 500) do |entry|
+      entry.generate
+    end
+  rescue => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
+    raise e
+  end
+
   def generate
     logger.info "Entry: #{self.short_id}"
     self.class.transaction do
@@ -36,7 +45,7 @@ class Entry < ActiveRecord::Base
 
   def generate_for_member
     user = User.get(self.author)
-    day = member.days.get entry.published_at
+    day = member.days.get self.published_at
     if self.all_watch_event?
       repo = Repository.get(self.repository)
       if repo # repo was destroyed

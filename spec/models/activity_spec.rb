@@ -20,11 +20,7 @@ describe Activity do
   context 'timezone' do
 
     it 'should be filter' do
-      #Activity.all.each do |activity|
-      #  puts activity.published_at
-      #end
       repository.activities.today.size.should eql 1 # UTC
-      puts repository.activities.on(Date.today, 'Beijing').to_sql
       repository.activities.on(Date.today, 'Beijing').size.should eql 2
     end
 
