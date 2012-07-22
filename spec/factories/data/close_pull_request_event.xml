@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-09T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:PullRequestEvent/1576366560</id>
+    <published>2012-07-21T20:26:47Z</published>
+    <updated>2012-07-21T20:26:47Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/pull/7059"/>
+    <title type="html">jalkoby closed pull request 7059 on rails/rails</title>
+    <author>
+      <name>jalkoby</name>
+      <email>jalkoby91@gmail.com</email>
+      <uri>https://github.com/jalkoby</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/f11e6329d1bb972e6906455adbb90115?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html">&lt;span class=&quot;mini-icon mini-icon-pull-request&quot;&gt;&lt;/span&gt;
+
+&lt;div class=&quot;title&quot;&gt;
+  &lt;a href=&quot;/jalkoby&quot;&gt;jalkoby&lt;/a&gt; &lt;span&gt;closed&lt;/span&gt; &lt;a href=&quot;https://github.com/rails/rails/pull/7059&quot;&gt;pull request 7059&lt;/a&gt; on &lt;a href=&quot;/rails/rails&quot;&gt;rails/rails&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-21T20:26:47Z&quot; title=&quot;2012-07-21 20:26:47&quot;&gt;July 21, 2012&lt;/time&gt;
+&lt;/div&gt;
+&lt;div class=&quot;details&quot;&gt;
+  
+  &lt;div class=&quot;message&quot;&gt;
+    &lt;blockquote&gt;Make argument `value` optional in form tags helpers&lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</content>
+  </entry>
+</feed>

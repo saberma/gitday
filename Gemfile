@@ -62,4 +62,5 @@ group :test do
   gem "rspec-rails"
   gem 'database_cleaner'
   gem 'spork'
+  gem 'timecop'
 end

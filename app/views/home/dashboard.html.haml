@@ -6,15 +6,16 @@
           =@day.title
           %small(title="#{@day.published_on.to_s(:db)}")=@day.today? ? 'Today' : @day.published_on.to_s(:db)
 
-        -@active_repositories.each do |active_repo|
-          -unless active_repo.activities.empty?
-            .active_repository{ class: (active_repo == @active_repositories.first && :first)}
+        -@tracked_repositories.each do |tracked_repo|
+          -activities = tracked_repo.activities.on(@day.published_on, current_member.time_zone)
+          -unless activities.empty?
+            .active_repository{ class: (tracked_repo == @tracked_repositories.first && :first)}
               .page-header
                 %h4
                   %i.icon-list-alt(title="ACITIVITIES")
-                  =link_to active_repo.repository.fullname, active_repo.repository.uri
+                  =link_to tracked_repo.fullname, tracked_repo.uri
               %ul.unstyled
-                -active_repo.activities.each do |activity|
+                -activities.each do |activity|
                   =render partial: "activities/#{activity.event.underscore}", locals: { activity: activity }
 
         -unless @followers.empty?

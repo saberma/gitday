@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:/saberma.private</id>
+  <link type="text/html" rel="alternate" href="https://github.com/saberma"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/saberma.private.atom?token=7bfmk234dff6230bjmab123e51e4e5cf"/>
+  <title>Private Feed for saberma</title>
+  <updated>2012-05-09T06:15:21Z</updated>
+  <entry>
+    <id>tag:github.com,2008:IssuesEvent/1576294601</id>
+    <published>2012-07-21T09:39:13Z</published>
+    <updated>2012-07-21T09:39:13Z</updated>
+    <link type="text/html" rel="alternate" href="https://github.com/rails/rails/issues/7121"/>
+    <title type="html">avit opened issue 7121 on rails/rails</title>
+    <author>
+      <name>avit</name>
+      <email>andrew@avit.ca</email>
+      <uri>https://github.com/avit</uri>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://secure.gravatar.com/avatar/f0987c97234fa9c6b26f796bdbdab037?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png"/>
+    <content type="html">&lt;span class=&quot;mini-icon mini-icon-issue-opened&quot;&gt;&lt;/span&gt;
+
+&lt;div class=&quot;title&quot;&gt;
+
+  &lt;a href=&quot;/avit&quot;&gt;avit&lt;/a&gt; &lt;span&gt;opened&lt;/span&gt; &lt;a href=&quot;https://github.com/rails/rails/issues/7121&quot; title=&quot;AR::Relation::Calculations.count breaks relations with group and select&quot;&gt;issue 7121&lt;/a&gt; on &lt;a href=&quot;/rails/rails&quot;&gt;rails/rails&lt;/a&gt;
+  &lt;time class=&quot;js-relative-date&quot; datetime=&quot;2012-07-21T09:39:13Z&quot; title=&quot;2012-07-21 09:39:13&quot;&gt;July 21, 2012&lt;/time&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;details&quot;&gt;
+  
+  &lt;div class=&quot;message&quot;&gt;
+    &lt;blockquote&gt;
+      AR::Relation::Calculations.count breaks relations with group and select
+    &lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</content>
+  </entry>
+</feed>

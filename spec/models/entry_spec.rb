@@ -40,15 +40,35 @@ describe Entry do
 
     context '#generate' do
 
-      let(:entry) { FactoryGirl.create(:pushed_to_branch) }
+      context 'comment' do
 
-      it 'should be success' do
-        entry
-        expect do
+        let(:issue_comment_entry) { Factory(:comment) }
+
+        it 'should be success' do
           expect do
-            entry.generate
-          end.should change(Activity, :count).by(1)
-        end.should change(Commit, :count).by(1)
+            expect do
+              expect do
+                issue_comment_entry.generate
+              end.should change(Activity, :count).by(1)
+            end.should change(Issue, :count).by(1)
+          end.should change(IssueComment, :count).by(1)
+        end
+
+      end
+
+      context 'push' do
+
+        let(:entry) { FactoryGirl.create(:pushed_to_branch) }
+
+        it 'should be success' do
+          entry
+          expect do
+            expect do
+              entry.generate
+            end.should change(Activity, :count).by(1)
+          end.should change(Commit, :count).by(1)
+        end
+
       end
 
     end

@@ -40,35 +40,6 @@ FactoryGirl.define do
 
   end
 
-  begin 'jQuery-File-Upload'
-
-    factory :comment_on_jquery_file_upload_entry, parent: :entry do
-      short_id "IssueCommentEvent/1569204837"
-      link "blueimp/jQuery-File-Upload/issues/1223#issuecomment-6733474"
-      author "vuongnguyen"
-      published_at '2012-07-03 11:20:30'
-    end
-
-  end
-
-  begin 'zurb/foundation'
-
-    factory :comment_on_zurb_foundation, parent: :entry do
-      short_id "IssueCommentEvent/1573406489"
-      link "zurb/foundation/issues/638#issuecomment-6982924"
-      author "Anderson-Juhasc"
-      published_at '2012-07-14 13:29:12'
-    end
-
-    factory :comment_on_zurb_foundation_1, parent: :entry do
-      short_id "IssueCommentEvent/1573406182"
-      link "zurb/foundation/issues/638#issuecomment-6982900"
-      author "Anderson-Juhasc"
-      published_at '2012-07-14 13:26:29'
-    end
-
-  end
-
   begin 'rails/rails'
 
     factory :pushed_to_branch, parent: :entry do
@@ -78,6 +49,13 @@ FactoryGirl.define do
       published_at '2012-07-21 06:06:13'
       ref '3-2-stable'
       shas ['a37b90c']
+    end
+
+    factory :comment, parent: :entry do
+      short_id "IssueCommentEvent/1576282620"
+      link "rails/rails/issues/7034#issuecomment-7150761"
+      author "rafaelfranca"
+      published_at '2012-07-21 07:17:05'
     end
 
   end

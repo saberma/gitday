@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RepositoryController do
 
-  let(:entry) { FactoryGirl.create(:pushed_to_branch) }
+  let(:entry) { FactoryGirl.create(:pushed_to_branch, published_at: Time.now) }
 
   before do
     entry.generate

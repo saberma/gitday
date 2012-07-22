@@ -16,12 +16,12 @@ class HomeController < ApplicationController
   def day
     @day = current_member.days.find_by_number(params[:number]) unless params[:number].blank?
     @day ||= current_member.days.first || current_member.days.new
-    @active_repositories = @day.active_repositories
+    @tracked_repositories = Repository.all
     @watchings = @day.watchings
     @followings = @day.followings
     @watchers = @day.watchers
     @followers = @day.followers
-    @empty = [@active_repositories, @watchings, @followings, @watchers, @followers].map(&:empty?).all?
+    @empty = [@tracked_repositories, @watchings, @followings, @watchers, @followers].map(&:empty?).all?
     render :action => "dashboard" and return
   end
 

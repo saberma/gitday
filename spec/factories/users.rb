@@ -14,6 +14,15 @@ FactoryGirl.define do
     gravatar_id '871c4ba6d25169779cee977e04b2f0c3'
   end
 
+  factory :user_rails, class: User do
+    login :rails
+    blog 'http://weblog.rubyonrails.org/'
+    public_repos 53
+    followers 1961
+    following 0
+    avatar_url 'https://secure.gravatar.com/avatar/30f39a09e233e8369dddf6feb4be0308?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-orgs.png'
+  end
+
   factory :camelsong, class: User do
     login :camelsong
     name :camel

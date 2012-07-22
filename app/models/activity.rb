@@ -5,7 +5,12 @@ class Activity < ActiveRecord::Base
   store :settings, accessors: [ :comment_id, :ref, :shas ] # IssueComment: comment_id. Push: ref, shas
   attr_accessible :author_id, :event, :published_at, :comment_id, :ref, :shas
 
-  scope :today, lambda { where(published_at: Time.now.all_day) }
+  scope :today, lambda { on(Date.today, 'UTC') }
+  scope :on, lambda {|date, time_zone|
+    start = Date.today.to_time.in_time_zone(time_zone).beginning_of_day
+    ends  = Date.today.to_time.in_time_zone(time_zone).end_of_day
+    where(published_at: start..ends)
+  }
 
   module Extension
 
