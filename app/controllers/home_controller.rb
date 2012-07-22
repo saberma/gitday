@@ -27,12 +27,12 @@ class HomeController < ApplicationController
 
   def mail
     @day = current_member.days.latest
-    @active_repositories = @day.active_repositories
+    @tracked_repositories = Repository.all
     @watchings = @day.watchings
     @followings = @day.followings
     @watchers = @day.watchers
     @followers = @day.followers
-    @empty = [@active_repositories, @watchings, @followings, @watchers, @followers].map(&:empty?).all?
+    @empty = [@tracked_repositories, @watchings, @followings, @watchers, @followers].map(&:empty?).all?
     render 'subscriber/day', layout: nil
   end
 end

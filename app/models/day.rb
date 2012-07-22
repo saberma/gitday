@@ -1,7 +1,5 @@
 class Day < ActiveRecord::Base
   belongs_to :member
-  # YOUR WATCHING ACTIVE REPOSITORIES
-  has_many :active_repositories      , dependent: :destroy, order: 'activities_count desc', extend: ActiveRepository::Extension
   # YOUR FRIENDS ACTIVITIES
   has_many :followings               , dependent: :destroy, order: 'id desc'              , extend: Following::Extension
   has_many :watchings                , dependent: :destroy, order: 'id desc'              , extend: Watching::Extension
