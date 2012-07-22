@@ -19,6 +19,8 @@ gem 'jquery-rails'
 gem 'feedzirra', '0.2.0.rc2'
 gem 'redis'
 gem 'haml', "~> 3.1.6"
+gem 'spine-rails'
+gem 'ruby-haml-js'
 gem 'devise'
 gem 'omniauth-github'
 gem 'settingslogic'
