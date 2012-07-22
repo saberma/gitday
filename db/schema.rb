@@ -11,13 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722040711) do
-
-  create_table "active_repositories", :force => true do |t|
-    t.integer "day_id"
-    t.integer "repository_id"
-    t.integer "activities_count", :default => 0
-  end
+ActiveRecord::Schema.define(:version => 20120722133043) do
 
   create_table "activities", :force => true do |t|
     t.integer  "repository_id",               :null => false
@@ -43,6 +37,22 @@ ActiveRecord::Schema.define(:version => 20120722040711) do
     t.date    "published_on"
     t.boolean "sended",       :default => false
   end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "entries", :force => true do |t|
     t.string   "short_id",     :limit => 32
@@ -120,21 +130,10 @@ ActiveRecord::Schema.define(:version => 20120722040711) do
     t.datetime "updated_at",                 :null => false
   end
 
-  create_table "repository_entries", :force => true do |t|
-    t.string   "short_id"
-    t.string   "link"
-    t.string   "author"
-    t.boolean  "generated"
-    t.text     "settings"
-    t.datetime "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "trackings", :force => true do |t|
-    t.integer  "member_id"
-    t.integer  "repository_id"
-    t.datetime "created_at"
+    t.integer  "member_id",     :null => false
+    t.integer  "repository_id", :null => false
+    t.datetime "created_at",    :null => false
   end
 
   add_index "trackings", ["member_id"], :name => "index_trackings_on_member_id"
@@ -154,6 +153,15 @@ ActiveRecord::Schema.define(:version => 20120722040711) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
+
+  create_table "watcheds", :force => true do |t|
+    t.integer  "member_id",     :null => false
+    t.integer  "repository_id", :null => false
+    t.datetime "created_at",    :null => false
+  end
+
+  add_index "watcheds", ["member_id"], :name => "index_watcheds_on_member_id"
+  add_index "watcheds", ["repository_id"], :name => "index_watcheds_on_repository_id"
 
   create_table "watcher_authors", :force => true do |t|
     t.integer  "watcher_id"

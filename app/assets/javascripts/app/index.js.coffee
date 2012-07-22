@@ -14,6 +14,7 @@
 class App extends Spine.Controller
   constructor: ->
     super
+    @log "Initialized"
     
     # Initialize controllers:
     #  @append(@items = new App.Items)

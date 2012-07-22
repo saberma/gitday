@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
         :gravatar_id => json['gravatar_id']
       })
       if options[:with_repositories]
-        repos = Octokit.repos(login, per_page: 100)
+        repos = Octokit.repos(login)
         repos.reject(&:fork).each do |json|
           Repository.get "#{login}/#{json['name']}", json, user
         end

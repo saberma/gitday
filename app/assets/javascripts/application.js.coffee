@@ -11,3 +11,4 @@ $(document).ready ->
   $('.dropdown-toggle').dropdown()
   $("span.timeago").timeago()
   $('#main').tooltip selector: "span[rel=tooltip], a[rel=tooltip]"
+  new App el: $("#app")

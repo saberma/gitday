@@ -6,9 +6,11 @@ class Member < ActiveRecord::Base
   #devise :database_authenticatable, :registerable, :recoverable, :validatable
   devise :trackable, :rememberable, :omniauthable
 
-  has_many :days                 , dependent: :destroy, order: 'id desc', extend: Day::Extension
+  has_many :days                 , dependent: :destroy, order: 'id desc'   , extend: Day::Extension
   has_many :trackings            , dependent: :destroy, order: 'id desc'
   has_many :tracking_repositories, through: :trackings, source: :repository
+  has_many :watcheds             , dependent: :destroy, order: 'id desc'   , extend: Watched::Extension
+  has_many :watched_repositories , through: :watcheds , source: :repository
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :token, :login, :time_zone
@@ -18,6 +20,10 @@ class Member < ActiveRecord::Base
 
   before_validation do
     self.token.sub!(/.*token=/, '') if token_changed?
+  end
+
+  after_create do
+    self.delay.get_watched_repositories
   end
 
   def token_valid?
@@ -70,6 +76,12 @@ class Member < ActiveRecord::Base
     end
   rescue => e
     ExceptionNotifier::Notifier.background_exception_notification(e)
+  end
+
+  def get_watched_repositories
+    Octokit.watched(self.login).each do |json|
+      self.watcheds.get json
+    end
   end
 
 end

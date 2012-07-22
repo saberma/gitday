@@ -29,6 +29,7 @@ gem 'octokit'
 gem 'seedbank'
 gem 'daemons-rails'
 gem 'whenever', :require => false
+gem 'delayed_job_active_record'
 gem 'exception_notification'
 gem 'letter_opener'
 gem 'roadie'

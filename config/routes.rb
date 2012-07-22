@@ -11,6 +11,7 @@ Gitday::Application.routes.draw do
   put '/member/token', to: 'members/token#update'
   scope '/member', module: :members do
     resources :trackings, only: [:index, :create, :destroy]
+    resources :watcheds , only: [:index]
   end
 
   get '/member/unsubscribe', to: 'members/subscribe#update', :as => :member_unsubscribe
