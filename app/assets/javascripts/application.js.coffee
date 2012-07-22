@@ -1,7 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.timeago
-#= require_tree .
+#= require app
 
 #= require twitter/bootstrap/dropdown.js
 #= require twitter/bootstrap/tooltip.js
